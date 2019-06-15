@@ -21,6 +21,8 @@ const GET_SUGGESTIONS = gql `
     }
   `;
 
+ 
+
 
 const AddActivity = () => (
 
