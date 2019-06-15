@@ -5,21 +5,25 @@ import './Navigation.css';
 
 const Navigation = ({mobileNavClass}) => {
   return ( 
-    <ul className={mobileNavClass}>
+    < div className = {mobileNavClass} >
+
        <Link to="/shop">
-          <li className="nav-links">Home</li>
+          <div className = "nav-links" > Home </div>
        </Link>
+
        <Link to="/about">
-         <li className="nav-links">Interests</li>
+         <div className="nav-links">Interests</div>
       </Link>
+      
       <Link to="/contact">
         <Icon icon="person" accessibilityLabel="Person" color="darkGray" /> User
-        </Link>
-        <Link to="/contact">
+      </Link>
+
+      <Link to="/contact">
         <Icon icon="calendar" accessibilityLabel="Calendar" color="darkGray" /> My Events
-        </Link>
+      </Link>
       
-    </ul>
+    </div>
    );
 }
  

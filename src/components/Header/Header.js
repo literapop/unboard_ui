@@ -10,14 +10,18 @@ import './Header.css';
 const Header = ({toggleMobileNav, mobileNavClass}) => {
   return ( 
     <header className="navbar">
-  <span className="navbar-toggle" onClick={toggleMobileNav}>
-    <FaBars />
-  </span> 
-  <Link to="/"><img src={logo} alt="logo" width="50px" className="logo" /></Link>
-  <SearchField placeholder="I'm bored" className="search-bar-nav"/>
-  <Navigation mobileNavClass={mobileNavClass} />
+
+      <span className="navbar-toggle" onClick={toggleMobileNav}>
+        <FaBars />
+      </span> 
+
+      <Link to="/"><img src={logo} alt="logo" width="50px" className="logo" /></Link>
+      
+      <SearchField placeholder="What do you want to do?" className="search-bar-nav"/>
+
+      <Navigation mobileNavClass={mobileNavClass} />
   
-</header>
+    </header>
    );
 }
  

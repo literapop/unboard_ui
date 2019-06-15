@@ -8,7 +8,7 @@
   display: block;
 }
 
-.active li {
+.active div {
   text-align: center;
   margin: 15px auto;
 }
