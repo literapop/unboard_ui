@@ -86,17 +86,12 @@ const AddActivity = () => (
         <Header/>
           
         <Container>
-          < Button 
-          text = "Suggest Me Something"
-          onClick = {
-            () => {
-              refetch();
+          
+          <Box >
+            < Box marginBottom = {
+              2
             }
-          }
-          />
-
-          <Box>
-            <Box marginBottom={2}>
+            class = "title" >
               <Label htmlFor="text">
                 <Text>Activity Title</Text>
               </Label>
@@ -112,7 +107,10 @@ const AddActivity = () => (
           </Box>
 
           <Box>
-            <Box marginBottom={2}>
+            < Box marginBottom = {
+              2
+            }
+            class = "title" >
               <Label htmlFor="text">
                 <Text>Activity Type</Text>
               </Label>
@@ -128,7 +126,10 @@ const AddActivity = () => (
           </Box>
 
           <Box>
-            <Box marginBottom={2}>
+            < Box marginBottom = {
+              2
+            }
+            class = "title" >
               <Label htmlFor="text">
                 <Text>Participation Capacity</Text>
               </Label>
@@ -144,7 +145,10 @@ const AddActivity = () => (
           </Box>
 
           <Box>
-            <Box marginBottom={2}>
+            < Box marginBottom = {
+              2
+            }
+            class = "title" >
               <Label htmlFor="text">
                 <Text>Price</Text>
               </Label>
@@ -158,6 +162,17 @@ const AddActivity = () => (
               type="text"
             />
           </Box>
+
+          < Button
+          text = "Suggest Me Something"
+          onClick = {
+            () => {
+              refetch();
+            }
+          }
+          />
+
+
           <Mutation mutation ={CREATE_ACTIVITY}>
             {
               (createActivity, ) => (
