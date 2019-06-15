@@ -8,11 +8,11 @@ const Modal = () => (
         <div id="logo"><i className="fa fa-pinterest" aria-hidden="true" /></div>
         <div id="welcome">Welcome to UnBoard.today</div>
         <div id="subheader">Brought to you by your University</div>
-        <div id="gitsource">
+        {/* <div id="gitsource">
           <a target="_blank" rel="noopener noreferrer">
             
           </a>
-        </div>
+        </div> */}
       </div>
       <div>
         <LoginButtons guest={() => {}} />

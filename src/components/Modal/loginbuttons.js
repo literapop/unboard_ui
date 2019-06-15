@@ -36,30 +36,21 @@ class LoginButtons extends React.Component {
               {'Continue As Guest'}
             </span>
           </button>
+
           <button
             type="submit"
-            id="twitterloginbutton"
-            onClick={() => this.handleLogin('/auth/twitter')}
+            id="guestbutton"
+            onClick={this.handleGuest}
           >
-            <span id="twitter">
-              <i className="fa fa-twitter" aria-hidden="true" />
+            <span id="guest">
+              <i className="fa fa-question-circle" aria-hidden="true" />
             </span>
             <span className="buttontext">
-              {'Continue With Twitter'}
+              {'Continue As Student'}
             </span>
           </button>
-          <button
-            type="submit"
-            id="googleloginbutton"
-            onClick={() => this.handleLogin('/auth/google')}
-          >
-            <span id="twitter">
-              <i className="fa fa-google" aria-hidden="true" />
-            </span>
-            <span className="buttontext">
-              {'Continue With Google'}
-            </span>
-          </button>
+          
+
         </React.Fragment>
       );
     }
