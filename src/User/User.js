@@ -1,10 +1,10 @@
 import React from 'react';
 import {Card, Text, Link, Box, Button, Letterbox, Image} from 'gestalt';
 import Header from '../components/Header/Header';
-import './AddActivity.css';
+import './User.css';
 
 
-const AddActivity = ({toggleMobileNav, mobileNavClass}) => {
+const User = ({toggleMobileNav, mobileNavClass}) => {
   return ( 
     <>
         <Header 
@@ -12,10 +12,10 @@ const AddActivity = ({toggleMobileNav, mobileNavClass}) => {
             mobileNavClass={mobileNavClass}
             />   
 
-       <input/>
+       <h1>Profile</h1>
 
   </>
   );
 }
  
-export default AddActivity;
+export default User;

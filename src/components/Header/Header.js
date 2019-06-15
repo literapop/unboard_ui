@@ -1,7 +1,7 @@
 import React from 'react';
 import logo from '../../logo.svg';
 import { SearchField } from 'gestalt';
-import Navigation from '../Navigation/Navigation';
+// import Navigation from '../Navigation/Navigation';
 import { Link } from 'react-router-dom';
 import {FaBars} from 'react-icons/fa';
 import 'gestalt/dist/gestalt.css';
@@ -21,9 +21,11 @@ const Header = ({toggleMobileNav, mobileNavClass}) => {
       
       <SearchField placeholder="What do you want to do?" className="search-bar-nav"/>
 
-      <Link to="AddActivity">Add Activity</Link>
+      <Link to="AddActivity" mobileNavClass={mobileNavClass}>Add Activity</Link>
 
-      <Navigation mobileNavClass={mobileNavClass} />
+      {/* <Navigation mobileNavClass={mobileNavClass} /> */}
+
+      < Link to = "/User" mobileNavClass={mobileNavClass} >Profile </Link>
   
     </header>
    );

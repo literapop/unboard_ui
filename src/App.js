@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Login from './Login/Login';
 import Home from './Home/Home';
 import AddActivity from './AddActivity/AddActivity';
+import User from './User/User';
 import data from './data/data.json';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 
@@ -46,7 +47,13 @@ class App extends Component {
         <Route exact path='/' component={Login} />
 
         <Route path='/AddActivity' component={() => 
-          <Home 
+          <AddActivity
+            toggleMobileNav={this.toggleMobileNav} 
+            mobileNavClass={this.mobileNavClass}
+            />} />  
+        
+        <Route path='/User' component={() => 
+          <User
             toggleMobileNav={this.toggleMobileNav} 
             mobileNavClass={this.mobileNavClass}
             />} />  
