@@ -40,8 +40,9 @@ const CardGrid = ({cards}) => (
           id = {activity.id}
           imageUrl={`https://img.imgeng.in/${activity.imageUrl}`}
           activityName={activity.name}
+          // type={activity.type.name}
           activityDescription={activity.description}
-          startTime={Date(activity.startTime).slice(0,15)}
+          startDate={Date(activity.startTime).slice(0,15)}
           location={activity.location.name}
           />
       ));

@@ -2,7 +2,7 @@ import React from 'react';
 import {Text, Link, Box, Button, Letterbox, Image} from 'gestalt';
 import './Card.css';
 
-const Card = ({id, imageUrl, activityName, activityDescription, startTime, location}) => {
+const Card = ({id, imageUrl, activityName, activityDescription, startDate, location}) => {
   return ( 
     <div 
     className="card"
@@ -25,8 +25,7 @@ const Card = ({id, imageUrl, activityName, activityDescription, startTime, locat
       <p>{activityDescription}</p>
     </Text>
     <p>
-      Start Time: {startTime}
-      
+      Start Date: {startDate}
     </p>
     <p>Location: {location}</p>
     <Button
