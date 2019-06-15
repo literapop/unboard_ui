@@ -1,5 +1,5 @@
 import React from 'react';
-import logo from '../../logo.svg';
+import logo from '../../logo.png';
 import { SearchField } from 'gestalt';
 import { Link } from 'react-router-dom';
 import {FaBars} from 'react-icons/fa';
