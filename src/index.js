@@ -3,6 +3,52 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
+import {ApolloClient} from 'apollo-client';
+import {InMemoryCache} from 'apollo-cache-inmemory';
+import {HttpLink} from 'apollo-link-http';
+// import {Query, ApolloProvider} from 'react-apollo';
+import gql from 'graphql-tag';
+// import {resolvers, typeDefs} from './resolvers';
+
+const cache = new InMemoryCache();
+
+const client = new ApolloClient({
+  cache,
+  link: new HttpLink({
+    uri: 'https://www.unboard.today/api/graphiql',
+  }),
+  // resolvers,
+  // typeDefs,
+});
+
+
+client
+  .query({
+    query: gql`
+        {activities {
+    sponsored
+    name
+      description
+    startTime
+    endTime
+    imageUrl
+    link
+    accessibility
+    location {
+      name
+      address1
+    }
+        creator {
+      firstName
+      lastName
+      email
+      password
+    }
+    price
+  }}
+    `
+  })
+  .then(result => console.log(result));
 
 ReactDOM.render(<App />, document.getElementById('root'));
 
