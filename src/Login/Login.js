@@ -3,7 +3,7 @@ import logo from '.././logo.png'
 import LoginButtons from './loginbuttons';
 import './Login.css';
 
-const Login = () => (
+const Login = ({redirect, loginUser}) => (
   <div id="cover">
     <div id="logincard">
       <div>
@@ -18,7 +18,10 @@ const Login = () => (
         </div> */}
       </div>
       <div>
-        <LoginButtons guest={() => {}} />
+        <LoginButtons 
+          loginUser = {loginUser} 
+          redirect = {redirect} 
+          guest={() => {}} />
       </div>
     </div>
   </div>

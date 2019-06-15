@@ -1,6 +1,5 @@
 import React from 'react';
 import logo from '../../logo.png';
-import { SearchField } from 'gestalt';
 import { Link } from 'react-router-dom';
 import {FaBars} from 'react-icons/fa';
 import {Button, Icon} from 'gestalt';
@@ -18,8 +17,7 @@ const Header = ({toggleMobileNav, mobileNavClass}) => {
       </span> 
 
       <Link to="/Home"><img src={logo} alt="logo" width="50px" className="logo" /></Link>
-      
-      <SearchField placeholder="I'm bored" className="search-bar-nav"/>
+
 
       <Link to="AddActivity" mobileNavClass={mobileNavClass} style={{ textDecoration: 'none' }}>
         {/* <Icon icon="add" accessibilityLabel="add" color="darkGray" /> */}
