@@ -1,5 +1,10 @@
 import React from 'react';
+<<<<<<< HEAD
 import logo from '../../logo.svg';
+=======
+import logo from '../../logo.png';
+import { SearchField } from 'gestalt';
+>>>>>>> c3a5c2145b6df06b451d63c30a735b86547cf340
 import { Link } from 'react-router-dom';
 import {FaBars} from 'react-icons/fa';
 import {Button, Icon} from 'gestalt';
