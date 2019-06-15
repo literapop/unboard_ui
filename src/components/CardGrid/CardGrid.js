@@ -2,7 +2,7 @@ import React from 'react';
 import {Card, Text, Link, Box, Button, Letterbox, Image, Spinner} from 'gestalt';
 import { Query } from 'react-apollo';
 import gql from 'graphql-tag';
-import moment from 'moment';
+// import moment from 'moment';
 
 const CardGrid = ({cards}) => (
 
