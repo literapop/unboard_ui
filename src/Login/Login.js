@@ -1,5 +1,5 @@
 import React from 'react';
-// import LoginButtons from './loginbuttons';
+import LoginButtons from './loginbuttons';
 import './Login.css';
 
 const Login = () => (
@@ -17,7 +17,7 @@ const Login = () => (
         </div> */}
       </div>
       <div>
-        {/* <LoginButtons guest={() => {}} /> */}
+        <LoginButtons guest={() => {}} />
       </div>
     </div>
   </div>
