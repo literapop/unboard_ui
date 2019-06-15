@@ -1,5 +1,4 @@
-#twitterloginbutton,
-#googleloginbutton,
+#studentbutton,
 #guestbutton {
     border: 0px;
     height: 40px;
@@ -20,33 +19,29 @@
     color: white;
 }
 
-#twitterloginbutton #twitter,
-#googleloginbutton #twitter,
+#studentbutton #twitter,
 #guestbutton #twitter {
     font-size: 30px;
     padding-left: 3px;
 }
 
-#twitterloginbutton #guest,
-#googleloginbutton #guest,
+
+#studentbutton #guest,
 #guestbutton #guest {
     font-size: 30px;
     padding-left: 3px;
 }
 
-#twitterloginbutton .buttontext,
-#googleloginbutton .buttontext,
+
+#studentbutton .buttontext,
 #guestbutton .buttontext {
     padding-right: 45px;
 }
 
-#googleloginbutton {
+#studentbutton {
     background-color: #4285f4;
 }
 
-#twitterloginbutton {
-    background-color: #38a1f3;
-}
 
 #guestbutton {
     background-color: #ffb45e;
