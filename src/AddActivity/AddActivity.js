@@ -1,60 +1,32 @@
 import React from 'react';
-import {Card, Text, Link, Box, Button, Container, Letterbox, Image, Label, TextField} from 'gestalt';
+import {Text, Box, Button, Container, Label, TextField, Spinner} from 'gestalt';
 import { Query } from 'react-apollo';
 import gql from 'graphql-tag';
 import Header from '../components/Header/Header';
 import './AddActivity.css';
 
-class AddActivity extends React.Component {
+const AddActivity = () => (
 
-  constructor(props) {
-    super(props);
-    this.handleChange = this._handleChange.bind(this);
-    this.state = {
-      value: "",
-      cap: 2,
-    };
-  }
-
-  _handleChange({ value }) {
-    this.setState({
-      title: value });
-  }
-
- 
-  render() {
-    <Query query={  gql`
-        {activities {
-          sponsored
-          name
-            description
-          startTime
-          endTime
-          imageUrl
-          link
-          accessibility
-          location {
-            name
-            address1
-          }
-              creator {
-            firstName
-            lastName
-            email
-            password
-          }
-          price
-        }}
+  <Query query={  gql`
+        {suggestion {
+    name
+    participantCapacity
+    accessibility
+    price
+    imageUrl
+    type {
+      id
+      name
+    }}
+    }
           `
-        }>
-
-    {({ loading, error, data }) => {
+        }> 
+        {({ loading, error, data }) => {
       if (loading) return <Spinner/>;
       if (error) return <p>Error :(</p>;
 
-        
-    return (
-      <>
+      return (
+        <>
         <Header/>
           
         <Container>
@@ -65,15 +37,15 @@ class AddActivity extends React.Component {
           <Box>
             <Box marginBottom={2}>
               <Label htmlFor="text">
-                <Text>Activit Title</Text>
+                <Text>Activity Title</Text>
               </Label>
             </Box>
 
             <TextField
               id="ActivityTitle"
-              onChange={this.handleChange}
+              // onChange={this.handleChange}
               placeholder="Activity Title"
-              value={this.state.title}
+              value={data.suggestion.name}
               type="text"
             />
           </Box>
@@ -87,9 +59,9 @@ class AddActivity extends React.Component {
 
             <TextField
               id="ActivityTitle"
-              onChange={this.handleChange}
+              // onChange={this.handleChange}
               placeholder="Activity Title"
-              value={this.state.value}
+              value={data.suggestion.type.name}
               type="text"
             />
           </Box>
@@ -103,9 +75,9 @@ class AddActivity extends React.Component {
 
             <TextField
               id="ActivityTitle"
-              onChange={this.handleChange}
+              // onChange={this.handleChange}
               placeholder="How many people can participate"
-              value={this.state.value}
+              value={data.suggestion.participantCapacity}
               type="text"
             />
           </Box>
@@ -119,26 +91,21 @@ class AddActivity extends React.Component {
 
             <TextField
               id="ActivityTitle"
-              onChange={this.handleChange}
+              // onChange={this.handleChange}
               placeholder="How"
-              value={this.state.value}
+              value={data.suggestion.accessibility}
               type="text"
             />
           </Box>
+          </Container>
+          </>
+      );
+    }}
 
-{/*           
-          accessibility
-          price
-          imageUrl
-          type {
-            id
-            name
-          } */}
-
-        </Container>
         
-      </>
-    );
-  }
-}
+        </Query>
+
+)
+ 
+
 export default AddActivity;

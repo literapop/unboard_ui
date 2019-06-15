@@ -3,6 +3,7 @@ import Card from '../Card/Card'
 import {Spinner} from 'gestalt';
 import { Query } from 'react-apollo';
 import gql from 'graphql-tag';
+
 const CardGrid = ({cards}) => (
 
   <Query query={
