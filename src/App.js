@@ -3,6 +3,7 @@ import Header from './components/Header/Header';
 import Footer from './components/Footer/Footer';
 import Login from './Login/Login';
 import Home from './Home/Home';
+import data from './data/data.json';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 
 import './App.css';
@@ -12,7 +13,20 @@ class App extends Component {
     super(props);
     this.state = { 
       showMobileNav: "hidden",  
+      cards: []
      }
+  }
+
+  componentDidMount() {
+    this.setState({
+      cards: [...data]
+    }, 
+    () => {
+      this.setState({
+        filteredCards: this.state.cards
+      }
+      )
+    })
   }
 
   toggleMobileNav = () => {
@@ -28,11 +42,12 @@ class App extends Component {
     <>
 
        <Router>
-       <Header 
-       toggleMobileNav={this.toggleMobileNav} 
-       mobileNavClass={this.state.showMobileNav}
-       />   
-       <Route exact path='/' component={Login} />
+       <Route exact path='/' component={() => 
+        <Home 
+          toggleMobileNav={this.toggleMobileNav} 
+          mobileNavClass={this.mobileNavClass}
+          cards = {this.state.cards}/>}
+        />
       <Route path='/home' component={Home} />  
       {/* <Footer />  */}
       </Router> 
