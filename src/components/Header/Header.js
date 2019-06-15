@@ -1,6 +1,6 @@
 import React from 'react';
 import logo from '../../logo.svg';
-import { SearchField, Container } from 'gestalt';
+import { SearchField } from 'gestalt';
 import Navigation from '../Navigation/Navigation';
 import { Link } from 'react-router-dom';
 import {FaBars} from 'react-icons/fa';
@@ -14,6 +14,7 @@ const Header = ({toggleMobileNav, mobileNavClass}) => {
     <FaBars />
   </span> 
   <Link to="/"><img src={logo} alt="logo" width="50px" className="logo" /></Link>
+  <SearchField />
   <Navigation mobileNavClass={mobileNavClass} />
   
 </header>
