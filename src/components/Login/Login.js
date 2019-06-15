@@ -1,7 +1,8 @@
 import React from 'react';
 import LoginButtons from './loginbuttons';
+import 'Login.css';
 
-const Modal = () => (
+const Login = () => (
   <div id="cover">
     <div id="logincard">
       <div>
@@ -22,4 +23,4 @@ const Modal = () => (
   </div>
 );
 
-export default Modal;
+export default Login;
