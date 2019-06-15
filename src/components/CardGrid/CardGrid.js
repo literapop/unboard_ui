@@ -2,8 +2,6 @@ import React from 'react';
 import {Card, Text, Link, Box, Button, Letterbox, Image, Spinner} from 'gestalt';
 import { Query } from 'react-apollo';
 import gql from 'graphql-tag';
-import moment from 'moment';
-
 const CardGrid = ({cards}) => (
 
   <Query query={
@@ -37,11 +35,12 @@ const CardGrid = ({cards}) => (
 
       return data.activities.map(activity => (
         <Card 
+          key = {activity.id}
           image={
-            <Letterbox width={200} height={200} contentAspectRatio={1}>
+            <Letterbox width={250} height={250} contentAspectRatio={1}>
             <Image
               alt="tall"
-              src={activity.imageUrl}
+              src={`https://img.imgeng.in/${activity.imageUrl}`}
               naturalWidth={1}
               naturalHeight={1}
             />
@@ -52,14 +51,14 @@ const CardGrid = ({cards}) => (
           >
           <Text align="center" bold size="xl">
             <Link href="https://pinterest.com">
-              <Box paddingX={1} paddingY={1}>
+              <Box paddingX={0} paddingY={0}>
                 {activity.name}
               </Box>
             </Link>
             <p>{activity.description}</p>
           </Text>
           <p>
-            Start Time: {Date(activity.startTime)}
+            Start Time: {Date(activity.startTime).slice(0,15)}
             
           </p>
           <p>Location: {activity.location.name}</p>

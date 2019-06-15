@@ -1,5 +1,5 @@
 import React from 'react';
-import {Card, Text, Link, Box, Button, Letterbox, Image} from 'gestalt';
+// import {Card, Text, Link, Box, Button, Letterbox, Image} from 'gestalt';
 import Header from '../components/Header/Header';
 import './AddActivity.css';
 
