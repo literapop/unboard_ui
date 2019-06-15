@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Login from './Login/Login';
 import Home from './Home/Home';
+import AddActivity from './AddActivity/AddActivity';
 import data from './data/data.json';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 
@@ -41,15 +42,21 @@ class App extends Component {
       
     <>
 
-       <Router>
-       <Route exact path='/' component={Login}
-        />
-      <Route path='/home' component={() => 
-        <Home 
-          toggleMobileNav={this.toggleMobileNav} 
-          mobileNavClass={this.mobileNavClass}
-          cards = {this.state.cards}/>} />  
-      {/* <Footer />  */}
+      <Router>
+        <Route exact path='/' component={Login} />
+
+        <Route path='/AddActivity' component={() => 
+          <Home 
+            toggleMobileNav={this.toggleMobileNav} 
+            mobileNavClass={this.mobileNavClass}
+            />} />  
+          
+        <Route path='/Home' component={() => 
+          <Home 
+            toggleMobileNav={this.toggleMobileNav} 
+            mobileNavClass={this.mobileNavClass}
+            cards = {this.state.cards}/>} />  
+        {/* <Footer />  */}
       </Router> 
      
       </>

@@ -7,7 +7,9 @@ import {FaBars} from 'react-icons/fa';
 import 'gestalt/dist/gestalt.css';
 import './Header.css';
 
+
 const Header = ({toggleMobileNav, mobileNavClass}) => {
+
   return ( 
     <header className="navbar">
 
@@ -15,9 +17,11 @@ const Header = ({toggleMobileNav, mobileNavClass}) => {
         <FaBars />
       </span> 
 
-      <Link to="/"><img src={logo} alt="logo" width="50px" className="logo" /></Link>
+      <Link to="/Home"><img src={logo} alt="logo" width="50px" className="logo" /></Link>
       
       <SearchField placeholder="What do you want to do?" className="search-bar-nav"/>
+
+      <Link to="AddActivity">Add Activity</Link>
 
       <Navigation mobileNavClass={mobileNavClass} />
   

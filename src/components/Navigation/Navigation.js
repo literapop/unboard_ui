@@ -7,21 +7,10 @@ const Navigation = ({mobileNavClass}) => {
   return ( 
     < div className = {mobileNavClass} >
 
-       <Link to="/shop">
-          <div className = "nav-links" > Home </div>
-       </Link>
-
-       <Link to="/about">
-         <div className="nav-links">Interests</div>
-      </Link>
-      
-      <Link to="/contact">
-        <Icon icon="person" accessibilityLabel="Person" color="darkGray" /> User
+      <Link to="/user">
+        Profile
       </Link>
 
-      <Link to="/contact">
-        <Icon icon="calendar" accessibilityLabel="Calendar" color="darkGray" /> My Events
-      </Link>
       
     </div>
    );

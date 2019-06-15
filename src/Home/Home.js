@@ -10,7 +10,8 @@ const Home = ({toggleMobileNav, mobileNavClass, cards}) => {
     <Header 
     toggleMobileNav={toggleMobileNav} 
     mobileNavClass={mobileNavClass}
-    />   <div className="card-list">
+    />   
+    <div className="card-list">
       {cards.map(card => {
     return (
       <Card 
