@@ -42,17 +42,14 @@ class App extends Component {
     <>
 
        <Router>
-        <Header 
+       <Route exact path='/' component={Login}
+        />
+      <Route path='/home' component={() => 
+        <Home 
           toggleMobileNav={this.toggleMobileNav} 
-          mobileNavClass={this.state.showMobileNav}
-          />   
-
-        <Route exact path='/' component={Login} 
-          />
-
-        <Route path='/home' component={Home} />  
-
-
+          mobileNavClass={this.mobileNavClass}
+          cards = {this.state.cards}/>} />  
+      {/* <Footer />  */}
       </Router> 
      
       </>
