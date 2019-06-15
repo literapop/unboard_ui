@@ -14,7 +14,7 @@ const Header = ({toggleMobileNav, mobileNavClass}) => {
     <FaBars />
   </span> 
   <Link to="/"><img src={logo} alt="logo" width="50px" className="logo" /></Link>
-  <SearchField />
+  <SearchField placeholder="I'm bored" className="search-bar-nav"/>
   <Navigation mobileNavClass={mobileNavClass} />
   
 </header>
