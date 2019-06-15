@@ -1,26 +1,40 @@
 import React from 'react';
 import {Text, Box, Button, Container, Label, TextField, SelectList, Spinner} from 'gestalt';
-import { Query } from 'react-apollo';
+import { Query, Mutation } from 'react-apollo';
 import gql from 'graphql-tag';
 import Header from '../components/Header/Header';
 import './AddActivity.css';
 
+
+const GET_SUGGESTIONS = gql `
+    {suggestion {
+      name
+      participantCapacity
+      accessibility
+      price
+      imageUrl
+      type {
+        id
+        name
+      }
+    }
+    }
+  `;
+
+
 const AddActivity = () => (
 
-  <Query query={  gql`
-        {suggestion {
-          name
-          participantCapacity
-          accessibility
-          price
-          imageUrl
-          type {
-            id
-            name
-          }}
-          }`}> 
 
-        {({ loading, error, data }) => {
+  < Query query = {GET_SUGGESTIONS} >
+  
+
+      {
+        ({
+          loading,
+          error,
+          data,
+          refetch
+        }) => {
       if (loading) return <Spinner/>;
       if (error) return <p>Error :(</p>;
 
@@ -31,9 +45,14 @@ const AddActivity = () => (
         <Header/>
           
         <Container>
-          <Button text="Suggest Me Something"/>
-
-        
+          < Button 
+          text = "Suggest Me Something"
+          onClick = {
+            () => {
+              refetch();
+            }
+          }
+          />
 
           <Box>
             <Box marginBottom={2}>
@@ -99,22 +118,7 @@ const AddActivity = () => (
             />
           </Box>
 
-          {/* <Box>
-            <Box marginBottom={2}>
-              <Label htmlFor="text">
-                <Text>Accessibile</Text>
-              </Label>
-            </Box>
-
-            <TextField
-              id = "Activity"
-              // onChange={this.handleChange}
-              placeholder="How"
-              value={data.suggestion.accessibility}
-              type="text"
-            />
-          </Box> */}
-
+        
           < Button text = "Submit" />
 
 
