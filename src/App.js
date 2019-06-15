@@ -32,11 +32,8 @@ class App extends Component {
        toggleMobileNav={this.toggleMobileNav} 
        mobileNavClass={this.state.showMobileNav}
        />   
-       < Route exact path = '/'
-       component = {
-         Login
-       }
-       />
+       <Route exact path='/' component={Login} />
+
       <Route path='/home' component={Home} />  
       {/* <Footer />  */}
       </Router> 
