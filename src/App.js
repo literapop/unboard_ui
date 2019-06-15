@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import Header from './components/Header/Header';
-import Footer from './components/Footer/Footer';
 import Login from './Login/Login';
 import Home from './Home/Home';
 import data from './data/data.json';
@@ -36,20 +35,24 @@ class App extends Component {
     })
   } 
 
+
   render() { 
     return ( 
       
     <>
 
        <Router>
-       <Route exact path='/' component={() => 
-        <Home 
+        <Header 
           toggleMobileNav={this.toggleMobileNav} 
-          mobileNavClass={this.mobileNavClass}
-          cards = {this.state.cards}/>}
-        />
-      <Route path='/home' component={Home} />  
-      {/* <Footer />  */}
+          mobileNavClass={this.state.showMobileNav}
+          />   
+
+        <Route exact path='/' component={Login} 
+          />
+
+        <Route path='/home' component={Home} />  
+
+
       </Router> 
      
       </>

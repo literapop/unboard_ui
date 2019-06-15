@@ -13,12 +13,12 @@
     animation-iteration-count: 1;
 }
 
-#cover {
+/* #cover {
     position: relative;
     overflow: hidden;
     height: 100%;
     width: 100%;
-}
+} */
 
 #cover #logincard {
     z-index: 15;

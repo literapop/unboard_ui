@@ -30,7 +30,7 @@ class LoginButtons extends React.Component {
             onClick={this.handleGuest}
           >
             <span id="guest">
-              <i className="fa fa-question-circle" aria-hidden="true" />
+              <i className="fa fa-university" aria-hidden="true" />
             </span>
             <span className="buttontext">
               {
