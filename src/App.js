@@ -12,9 +12,15 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = { 
+      redirect: false,
       showMobileNav: "hidden",
-      
-      
+      user: {
+        email: '',
+        firstName: '',
+        events: []
+      },
+      isLoggedIn: false,
+
      }
   }
 
@@ -37,6 +43,10 @@ class App extends Component {
     })
   } 
 
+  loginUser = () => {
+    this.setState({redirect:true})
+  }
+
 
   render() { 
     return ( 
@@ -44,7 +54,12 @@ class App extends Component {
     <>
 
       <Router>
-        <Route exact path='/' component={Login} />
+        <Route exact path='/' component={ () =>
+          <Login 
+            isLoggedIn={this.state.isLoggedIn} 
+            redirect = {this.state.redirect} 
+            loginUser = {this.loginUser}/>
+          } />
 
         <Route path='/AddActivity' component={() => 
           <AddActivity
@@ -52,13 +67,13 @@ class App extends Component {
             mobileNavClass={this.mobileNavClass}
             />} />  
         
-        <Route path='/User' component={() => 
+        <Route path='/user' component={() => 
           <User
             toggleMobileNav={this.toggleMobileNav} 
             mobileNavClass={this.mobileNavClass}
             />} />  
           
-        <Route path='/Home' component={() => 
+        <Route path='/home' component={() => 
           <Home 
             toggleMobileNav={this.toggleMobileNav} 
             mobileNavClass={this.mobileNavClass}

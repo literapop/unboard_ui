@@ -16,6 +16,9 @@ const CardGrid = ({cards}) => (
     endTime
     imageUrl
     link
+    type {
+      name
+    }
     accessibility
     location {
       name
@@ -40,7 +43,7 @@ const CardGrid = ({cards}) => (
           id = {activity.id}
           imageUrl={`https://img.imgeng.in/${activity.imageUrl}`}
           activityName={activity.name}
-          // type={activity.type.name}
+          type={activity.type ? activity.type.name : 'Mystery'}
           activityDescription={activity.description}
           startDate={Date(activity.startTime).slice(0,15)}
           location={activity.location.name}

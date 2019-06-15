@@ -2,7 +2,7 @@ import React from 'react';
 import {Text, Link, Box, Button, Letterbox, Image} from 'gestalt';
 import './Card.css';
 
-const Card = ({id, imageUrl, activityName, activityDescription, startDate, location}) => {
+const Card = ({id, imageUrl, activityName, activityDescription, startDate, location, type}) => {
   return ( 
     <div 
     className="card"
@@ -17,13 +17,15 @@ const Card = ({id, imageUrl, activityName, activityDescription, startDate, locat
       />
     </Letterbox>
     <Text align="center" bold size="xl">
-      <Link href="https://pinterest.com">
+      <Link to='/description'>
         <Box paddingX={0} paddingY={0}>
           {activityName}
         </Box>
       </Link>
-      <p>{activityDescription}</p>
+      
     </Text>
+    <p>Type of Activity: {type}</p>
+      <p>{activityDescription}</p>
     <p>
       Start Date: {startDate}
     </p>
