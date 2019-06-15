@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import Header from './components/Header/Header';
-import Footer from './components/Footer/Footer';
 import Login from './Login/Login';
 import Home from './Home/Home';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
@@ -11,7 +10,7 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = { 
-      showMobileNav: "hidden",  
+      showMobileNav: "hidden",
      }
   }
 
@@ -22,20 +21,24 @@ class App extends Component {
     })
   } 
 
+
   render() { 
     return ( 
       
     <>
 
        <Router>
-       <Header 
-       toggleMobileNav={this.toggleMobileNav} 
-       mobileNavClass={this.state.showMobileNav}
-       />   
-       <Route exact path='/' component={Login} />
+        <Header 
+          toggleMobileNav={this.toggleMobileNav} 
+          mobileNavClass={this.state.showMobileNav}
+          />   
 
-      <Route path='/home' component={Home} />  
-      {/* <Footer />  */}
+        <Route exact path='/' component={Login} 
+          />
+
+        <Route path='/home' component={Home} />  
+
+
       </Router> 
      
       </>
