@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import Header from './components/Header/Header';
 import Login from './Login/Login';
 import Home from './Home/Home';
 import data from './data/data.json';

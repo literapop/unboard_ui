@@ -40,12 +40,14 @@ const Home = ({toggleMobileNav, mobileNavClass, cards}) => {
           </p>
           <p>Current participants: {card.participants}</p>
           <Button
+          inline 
             accessibilityLabel="Follow James Jones"
             size="sm"
             color="red"
             text="Like"
           />
             <Button
+            inline 
             accessibilityLabel="Follow James Jones"
             size="sm"
             color="blue"
