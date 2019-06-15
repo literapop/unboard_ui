@@ -5,6 +5,13 @@ import './loginbuttons.css';
 
 class LoginButtons extends React.Component {
 
+    constructor(props) {
+      super(props);
+      this.state = {
+        redirect: false,
+      }
+    }
+
     handleGuest = () => { 
       this.setState({redirect:true})
     }

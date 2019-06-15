@@ -28,13 +28,14 @@ class App extends Component {
     <>
 
        <Router>
-       <Header 
-       toggleMobileNav={this.toggleMobileNav} 
-       mobileNavClass={this.state.showMobileNav}
-       />   
-       <Route path='/' component={Home} />
-      <Route path='/login' component={Login} />  
-      <Footer /> 
+        <Header 
+          toggleMobileNav={this.toggleMobileNav} 
+          mobileNavClass={this.state.showMobileNav}
+          />   
+          
+          <Route exact path='/' component={Login} />  
+          <Route path='/Home' component={Home} />
+        <Footer /> 
       </Router>
      
       </>
