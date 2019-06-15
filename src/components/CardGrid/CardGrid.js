@@ -34,7 +34,7 @@ const CardGrid = ({cards}) => (
   }}
     `
   }>
-    {({ loading, error, data }) => {
+    {({ loading, error, data, refetch }) => {
       if (loading) return <Spinner/>;
       if (error) return <p>Error :(</p>;
 
@@ -46,9 +46,9 @@ const CardGrid = ({cards}) => (
           type={activity.type ? activity.type.name : 'Mystery'}
           activityDescription={activity.description}
           startDate={Date(activity.startTime).slice(0,15)}
-          location={activity.location.name}
+          location={activity.location ? activity.location.name : "TBD"}
           />
-      ));
+      ), () => refetch());
     }}
   </Query>
 

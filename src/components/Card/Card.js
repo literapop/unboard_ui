@@ -25,24 +25,24 @@ const Card = ({id, imageUrl, activityName, activityDescription, startDate, locat
       
     </Text>
     <p>Type of Activity: {type}</p>
-      <p>{activityDescription}</p>
+      <p>Description: {activityDescription}</p>
     <p>
       Start Date: {startDate}
     </p>
     <p>Location: {location}</p>
     <Button
     inline 
-      accessibilityLabel="Follow James Jones"
+      accessibilityLabel="Like"
       size="sm"
       color="red"
       text="Like"
-    />
+    /> 
       <Button
       inline 
-      accessibilityLabel="Follow James Jones"
+      accessibilityLabel="Register"
       size="sm"
       color="blue"
-      text="Add Event"
+      text="Register"
     />
   </div>
    );

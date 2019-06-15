@@ -20,7 +20,46 @@ const GET_SUGGESTIONS = gql `
     }
     }
   `;
+    
 
+  const CREATE_ACTIVITY = gql`
+  mutation CreateActivity(
+    $accessibility: Float!, 
+    $price: Float!, 
+    $creatorId: Int!, 
+    $description: String!, 
+    $name:String!, 
+    $startTime: Int, 
+    $endTime: Int, 
+    $typeId: Int!, 
+    $locationId: Int, 
+    $participantCapacity: Int) {
+  createActivity(
+    accessibility: $accessibility, 
+    price: $price, 
+    creatorId: $creatorId, 
+    description: $description, 
+    name:$name, 
+    startTime: $startTime, 
+    endTime: $endTime, 
+    typeId: $typeId, 
+    locationId: $locationId, 
+    participantCapacity: $participantCapacity) {    
+      id
+      participantCapacity
+      startTime
+      endTime
+      type {
+          id
+        name
+      }
+      location {
+        name
+        address1
+      }
+  }
+}
+`;
  
 
 
@@ -119,9 +158,32 @@ const AddActivity = () => (
               type="text"
             />
           </Box>
-
+          <Mutation mutation ={CREATE_ACTIVITY}>
+            {
+              (createActivity, ) => (
+                <Button text = "Submit" onClick={e => {
+                  console.log(data)
+                  // e.preventDefault();
+                  createActivity(
+                    { variables: 
+                      { accessibility: data.suggestion.accessibility,
+                        creatorId: 1,
+                        description: data.suggestion.name,
+                        name: data.suggestion.name,
+                        typeId: 5,
+                        price: data.suggestion.price, 
+                        participantCapacity: data.suggestion.participantCapacity
+                      }
+                    }
+                  )
+                }
+              }/>  
+              )
+            }
+          
+          </Mutation>
         
-          < Button text = "Submit" />
+          
 
 
           </Container>

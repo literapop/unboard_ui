@@ -4,3 +4,8 @@
   padding: 1em;
   border-radius: 5px;
 }
+
+.card > button {
+
+  margin: .5em;
+}

@@ -19,7 +19,7 @@ class App extends Component {
         firstName: '',
         events: []
       },
-      isLoggedIn: false,
+      isLoggedIn: false
 
      }
   }
