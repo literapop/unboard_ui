@@ -1,33 +1,45 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import Header from './components/Header/Header';
 import Footer from './components/Footer/Footer';
-import Login from '.components/Login/Login';
-import Home from '.components/Home/Home'
-import Router from 'react-router';
-import { BrowserRouter, Route, Link, Redirect, withRouter } from 'react-router-dom';
+import Login from './Login/Login';
+import Home from './Home/Home';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 
 import './App.css';
 
 class App extends Component {
   constructor(props) {
     super(props);
-    this.state = {  }
+    this.state = { 
+      showMobileNav: "hidden",  
+     }
   }
+
+  toggleMobileNav = () => {
+    let css = (this.state.showMobileNav === "hidden") ? "active" : "hidden";
+    this.setState({ 
+      showMobileNav: css
+    })
+  } 
+
   render() { 
     return (
-      <>
-      <Header />
-      <Login />
-      <Home />
-      // <Router>
-      //   <Route />
-      //   <Route />
-      // </Router>
-      <Footer />
+      
+    <>
+
+       <Router>
+       <Header 
+       toggleMobileNav={this.toggleMobileNav} 
+       mobileNavClass={this.state.showMobileNav}
+       />   
+       <Route path='/' component={Home} />
+      <Route path='/login' component={Login} />  
+      <Footer /> 
+      </Router>
+     
       </>
      );
   }
 }
  
-export default APp;
+export default App;
