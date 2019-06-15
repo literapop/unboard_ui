@@ -19,7 +19,7 @@ const Header = ({toggleMobileNav, mobileNavClass}) => {
 
       <Link to="/Home"><img src={logo} alt="logo" width="50px" className="logo" /></Link>
       
-      <SearchField placeholder="What do you want to do?" className="search-bar-nav"/>
+      <SearchField placeholder="I'm bored" className="search-bar-nav"/>
 
       <Link to="AddActivity" mobileNavClass={mobileNavClass} style={{ textDecoration: 'none' }}>
         {/* <Icon icon="add" accessibilityLabel="add" color="darkGray" /> */}
