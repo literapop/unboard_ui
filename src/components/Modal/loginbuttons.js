@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import './loginbuttons.css';
 
 
 const mapStateToProps = state => state;
