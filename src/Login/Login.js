@@ -1,6 +1,6 @@
 import React from 'react';
 import LoginButtons from './loginbuttons';
-import 'Login.css';
+import './Login.css';
 
 const Login = () => (
   <div id="cover">
@@ -17,7 +17,7 @@ const Login = () => (
         </div> */}
       </div>
       <div>
-        <LoginButtons guest={() => {}} />
+        <LoginButtons />
       </div>
     </div>
   </div>
