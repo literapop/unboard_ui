@@ -78,7 +78,7 @@ class App extends Component {
             toggleMobileNav={this.toggleMobileNav} 
             mobileNavClass={this.mobileNavClass}
             cards = {this.state.cards}/>} />  
-        {/* <Footer />  */}
+        
       </Router> 
      
       </>
