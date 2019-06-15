@@ -22,33 +22,33 @@ const client = new ApolloClient({
 });
 
 
-client
-  .query({
-    query: gql`
-        {activities {
-    sponsored
-    name
-      description
-    startTime
-    endTime
-    imageUrl
-    link
-    accessibility
-    location {
-      name
-      address1
-    }
-        creator {
-      firstName
-      lastName
-      email
-      password
-    }
-    price
-  }}
-    `
-  })
-  .then(result => console.log(result));
+// client
+//   .query({
+//     query: gql`
+//         {activities {
+//     sponsored
+//     name
+//       description
+//     startTime
+//     endTime
+//     imageUrl
+//     link
+//     accessibility
+//     location {
+//       name
+//       address1
+//     }
+//         creator {
+//       firstName
+//       lastName
+//       email
+//       password
+//     }
+//     price
+//   }}
+//     `
+//   })
+//   .then(result => console.log(result));
 
 ReactDOM.render(
   <ApolloProvider client={client}>
