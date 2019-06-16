@@ -3,7 +3,7 @@ import { Box, Button, Container,  TextField,  Spinner} from 'gestalt';
 import { Mutation, withApollo } from 'react-apollo';
 import { withRouter } from 'react-router';
 import gql from 'graphql-tag';
-import Header from '../components/Header/Header';
+import Header from '../components/Header';
 import './AddActivity.css';
 
 

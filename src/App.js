@@ -66,56 +66,45 @@ class App extends Component {
     this.setState({ newActivity: Object.assign({}, this.state.newActivity, activity) });
   }
  
-
   render() { 
-    return ( 
-      
+    return (     
     <>
-
       <Router>
         <Route exact path='/' component={ () =>
           <Login 
             isLoggedIn={this.state.isLoggedIn} 
             redirect = {this.state.redirect} 
             loginUser = {this.loginUser}/>
-          } />
+        } />
 
         <Route path='/AddActivity' component={() => 
           <AddActivity
             toggleMobileNav={this.toggleMobileNav} 
             updateNewActivity={this.updateNewActivity}
             newActivity={this.state.newActivity}
-            />} />  
+            />}
+          />  
         
         <Route path='/user' component={() => 
           <User
             toggleMobileNav={this.toggleMobileNav} 
-            modal = {
-              this.state.modal
-            }
-            toggleModal = {
-              this.toggleModal
-            }
-            
-            cards = {
-              this.state.cards
-            }
-            />}
-            
-            />
+            modal={this.state.modal}
+            toggleModal={this.toggleModal}
+            cards={this.state.cards}
+          />
+        } />
           
         <Route path='/home' component={() => 
           <Home 
             modal = {this.state.modal}
             toggleModal={this.toggleModal}
             toggleMobileNav={this.toggleMobileNav} 
-          
-            cards = {this.state.cards}/>} />  
+            cards = {this.state.cards}/>
+        } />  
         
       </Router> 
-     
-      </>
-     );
+    </>
+    );
   }
 }
  
