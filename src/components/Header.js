@@ -15,7 +15,7 @@ const Header = ({toggleMobileNav}) => (
 
     <Link to="AddActivity" style={{ textDecoration: 'none' }}>
       {/* <Icon icon="add" accessibilityLabel="add" color="darkGray" /> */}
-      <Button text="Add Activity" type="button" />
+      <Button text="+ Add Activity" type="button" />
     </Link>
 
     {/* <Navigation mobileNavClass={mobileNavClass} /> */}

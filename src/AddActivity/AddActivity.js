@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
-import { Box, Button, Container,  TextField,  Spinner} from 'gestalt';
+import { Container } from 'gestalt';
 import { Mutation, withApollo } from 'react-apollo';
 import { withRouter } from 'react-router';
 import gql from 'graphql-tag';
 import Header from '../components/Header';
 import './AddActivity.scss';
-
 
 const GET_SUGGESTIONS = gql `
     {suggestion {
@@ -22,7 +21,6 @@ const GET_SUGGESTIONS = gql `
     }
   `;
     
-
   const CREATE_ACTIVITY = gql`
   mutation CreateActivity(
     $accessibility: Float!, 
@@ -61,13 +59,13 @@ const GET_SUGGESTIONS = gql `
 }
 `;
  
-
 class AddActivity extends Component {
   state = {
     name: '',
     type: '',
     participantCapacity: '',
-    price: ''
+    price: '',
+    accessibility: .1
   }
 
   onFieldChange = data => {
@@ -77,6 +75,15 @@ class AddActivity extends Component {
   componentDidMount() {
     const { newActivity } = this.props;
     this.setState(newActivity);
+  }
+
+  validateFields = () => {
+    const { price } = this.state;
+    if (typeof price === 'undefined' || price === '' || price > 1) {
+      alert('Please enter a price between 0 and 1');
+      return false;
+    }
+    return true;
   }
 
   render() {
@@ -125,6 +132,7 @@ class AddActivity extends Component {
           <label><span>Price</span>
           <input
             id="newPrice"
+            required={true}
             key="newPrice"
             onChange={e => this.onFieldChange({ price: e.target.value })}
             placeholder="Price"
@@ -138,13 +146,17 @@ class AddActivity extends Component {
                 (createActivity) => (
                   <input type="submit" value="Create" onClick={e => {
                     e.preventDefault();
+                    const valid = this.validateFields()
+                    if (!valid) {
+                      return;
+                    }
                     createActivity(
                       { variables: 
-                        { accessibility: accessibility,
+                        { accessibility: parseFloat(accessibility),
                           creatorId: 1,
                           description: name,
-                          name: name,
-                          type: type,
+                          name,
+                          type,
                           price: parseFloat(price), 
                           participantCapacity: parseInt(participantCapacity)
                         }
@@ -155,7 +167,7 @@ class AddActivity extends Component {
                         type: '',
                         participantCapacity: '0',
                         description: '',
-                        accessibility: '',
+                        accessibility: '.1',
                         price: ''
                       });
                       history.push("/home")

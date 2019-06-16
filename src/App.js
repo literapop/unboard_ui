@@ -26,7 +26,7 @@ class App extends Component {
         type: '',
         participantCapacity: '0',
         description: '',
-        accessibility: '',
+        accessibility: '.1',
         price: ''
       },
       filterTypeId: null
@@ -63,7 +63,6 @@ class App extends Component {
   }
 
   updateNewActivity = activity => {
-    console.log('activiety: ', activity);
     this.setState({ newActivity: Object.assign({}, this.state.newActivity, activity) });
   }
 

@@ -6,7 +6,7 @@ const Card = ({imageUrl, activityName, type, toggleModal, activity}) => {
       <img src={imageUrl.toString()} alt={activityName} />
       <figcaption>
         <p>{activityName}</p>
-        <p>Type of Activity: {type}</p>
+        <p className="cardType">{type}</p>
       </figcaption>
     </figure>
    );

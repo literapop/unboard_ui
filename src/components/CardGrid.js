@@ -3,7 +3,6 @@ import Card from './Card'
 import {Spinner, Modal, Box, Button} from 'gestalt';
 import { Query, Mutation } from 'react-apollo';
 import gql from 'graphql-tag';
-// import { updateLocale } from 'moment';
 
 const DELETE_ACTIVITY =  gql`
   mutation deleteActivity($activityId: Int!, $userId: Int!) { deleteActivity(activityId: $activityId, userId: $userId) { id } }
