@@ -1,50 +1,18 @@
 import React from 'react';
 import Header from '../components/Header/Header';
-import {Text, Box, Button, Container, Label, TextField, SelectList, Spinner} from 'gestalt';
-import { Query, Mutation } from 'react-apollo';
+// import {Text, Box, Button, Container, Label, TextField, SelectList, Spinner} from 'gestalt';
+import { Query } from 'react-apollo';
 import gql from 'graphql-tag';
 import './User.css';
 
 const GET_USER = gql `
     {
-      query activities {
-        activities(creatorId: 1) {
-          sponsored
-          name
-          description
-          startTime
-          endTime
-          imageUrl
-          link
-          accessibility
-          likeCount
-          ads {
-            images {
-              href
-            }
-            name
-            salePrice
-            url
-          }
-          participantCapacity
-          registeredParticipants {
-            id
-            email
-            firstName
-            lastName
-          }
-          location {
-            name
-            address1
-          }
-          creator {
-            firstName
-            lastName
-            email
-            password
-          }
-          price
-          views
+      query {
+        user(email: "brennen3@gmail.com") {
+          id
+          email
+          firstName
+          lastName
         }
       }
     }
@@ -64,7 +32,7 @@ const User = () => (
           data,
           refetch
         }) => {
-      if (loading) return <Spinner/>;
+      // if (loading) return <Spinner/>;
       if (error) return <p>Error :(</p>;
 
     
@@ -72,16 +40,9 @@ const User = () => (
         <>
         
           <Header/>
-            
-          <Container>
 
-            {
-              data.activities.name
-            }
+          <h1>Hello User</h1>
 
-
-
-          </Container>
         </>
       );
     }}

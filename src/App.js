@@ -71,13 +71,13 @@ class App extends Component {
         <Route path='/AddActivity' component={() => 
           <AddActivity
             toggleMobileNav={this.toggleMobileNav} 
-            mobileNavClass={this.mobileNavClass}
+            
             />} />  
         
         <Route path='/user' component={() => 
           <User
             toggleMobileNav={this.toggleMobileNav} 
-            mobileNavClass={this.mobileNavClass}
+            
             />} />  
           
         <Route path='/home' component={() => 
@@ -85,7 +85,7 @@ class App extends Component {
             modal = {this.state.modal}
             toggleModal={this.toggleModal}
             toggleMobileNav={this.toggleMobileNav} 
-            mobileNavClass={this.mobileNavClass}
+          
             cards = {this.state.cards}/>} />  
         
       </Router> 
