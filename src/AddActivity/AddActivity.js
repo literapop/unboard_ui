@@ -32,7 +32,7 @@ const GET_SUGGESTIONS = gql `
     $name:String!, 
     $startTime: Int, 
     $endTime: Int, 
-    $typeId: Int!, 
+    $type: String!, 
     $locationId: Int, 
     $participantCapacity: Int) {
   createActivity(
@@ -43,7 +43,7 @@ const GET_SUGGESTIONS = gql `
     name:$name, 
     startTime: $startTime, 
     endTime: $endTime, 
-    typeId: $typeId, 
+    type: $type, 
     locationId: $locationId, 
     participantCapacity: $participantCapacity) {    
       participantCapacity
@@ -144,7 +144,7 @@ class AddActivity extends Component {
                           creatorId: 1,
                           description: name,
                           name: name,
-                          typeId: 5,
+                          type: type,
                           price: parseFloat(price), 
                           participantCapacity: parseInt(participantCapacity)
                         }
