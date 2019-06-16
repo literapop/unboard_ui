@@ -7,44 +7,12 @@ import './User.css';
 
 const GET_USER = gql `
     {
-      query activities {
-        activities(creatorId: 1) {
-          sponsored
-          name
-          description
-          startTime
-          endTime
-          imageUrl
-          link
-          accessibility
-          likeCount
-          ads {
-            images {
-              href
-            }
-            name
-            salePrice
-            url
-          }
-          participantCapacity
-          registeredParticipants {
-            id
-            email
-            firstName
-            lastName
-          }
-          location {
-            name
-            address1
-          }
-          creator {
-            firstName
-            lastName
-            email
-            password
-          }
-          price
-          views
+      query {
+        user(email: "brennen3@gmail.com") {
+          id
+          email
+          firstName
+          lastName
         }
       }
     }
@@ -63,7 +31,7 @@ const User = () => (
           data,
           refetch
         }) => {
-      if (loading) return <Spinner/>;
+      // if (loading) return <Spinner/>;
       if (error) return <p>Error :(</p>;
 
     
@@ -74,13 +42,8 @@ const User = () => (
             
           <Container>
 
-            {
-              data.activities.name
-            }
+          <h1>Hello User</h1>
 
-
-
-          </Container>
         </>
       );
     }}

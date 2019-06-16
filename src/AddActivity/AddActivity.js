@@ -1,5 +1,5 @@
 import React from 'react';
-import {Text, Box, Button, Container, Label, TextField, SelectList, Spinner} from 'gestalt';
+import { Box, Button, Container,  TextField,  Spinner} from 'gestalt';
 import { Query, Mutation } from 'react-apollo';
 import gql from 'graphql-tag';
 import Header from '../components/Header/Header';

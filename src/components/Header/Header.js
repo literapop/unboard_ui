@@ -2,12 +2,12 @@ import React from 'react';
 import logo from '../../logo.png';
 import { Link } from 'react-router-dom';
 import {FaBars} from 'react-icons/fa';
-import {Button, Icon} from 'gestalt';
+import {Button} from 'gestalt';
 import 'gestalt/dist/gestalt.css';
 import './Header.css';
 
 
-const Header = ({toggleMobileNav, mobileNavClass}) => {
+const Header = ({toggleMobileNav}) => {
 
   return ( 
     <header className="navbar">
@@ -19,14 +19,14 @@ const Header = ({toggleMobileNav, mobileNavClass}) => {
       <Link to="/Home"><img src={logo} alt="logo" width="50px" className="logo" /></Link>
 
 
-      <Link to="AddActivity" mobileNavClass={mobileNavClass} style={{ textDecoration: 'none' }}>
+      <Link to="AddActivity" style={{ textDecoration: 'none' }}>
         {/* <Icon icon="add" accessibilityLabel="add" color="darkGray" /> */}
         <Button text="Add Activity" type="button" />
       </Link>
 
       {/* <Navigation mobileNavClass={mobileNavClass} /> */}
 
-      < Link to = "/User" mobileNavClass={mobileNavClass} style={{ textDecoration: 'none' } }><Button text="Profile" type="button" /> </Link>
+      < Link to = "/User" style={{ textDecoration: 'none' } }><Button text="Profile" type="button" /> </Link>
   
     </header>
    );
