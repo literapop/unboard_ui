@@ -132,3 +132,7 @@
 .cardType {
   text-align: right;
 }
+
+.profileName {
+  padding: 10px;
+}
