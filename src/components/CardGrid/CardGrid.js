@@ -1,8 +1,22 @@
 import React from 'react';
 import Card from '../Card/Card'
 import {Spinner, Modal, Heading, Box, Button} from 'gestalt';
-import { Query } from 'react-apollo';
+import { Query, Mutation } from 'react-apollo';
 import gql from 'graphql-tag';
+
+const DELETE_ACTIVITY =  gql`
+mutation deleteActivity(
+  $activityId: Int!, 
+  $userId: Int!, 
+  ) {    
+    deleteActivity(
+      activityId: $activityId, 
+      userId: $userId) {    
+      id
+  }
+}
+
+`;
 
 const CardGrid = ({modal, toggleModal, cards}) => (
   <>
@@ -10,6 +24,7 @@ const CardGrid = ({modal, toggleModal, cards}) => (
     gql`
         {activities {
     sponsored
+    id
     name
       description
     startTime
@@ -70,13 +85,29 @@ const CardGrid = ({modal, toggleModal, cards}) => (
                   color="blue"
                   text="Register"
                 />
-                <Button
+                <Mutation mutation={DELETE_ACTIVITY}>
+                 {(deleteActivity, refetchQuery ) => (
+                   <Button
                 inline 
                   accessibilityLabel="Like"
                   size="sm"
                   color="red"
                   text="Delete Event!"
-                /> 
+                  onClick={e => {
+                    console.log(modal)
+                    deleteActivity(
+                      { variables: 
+                        { activityId: parseInt(modal.id),
+                          userId: 1
+                        }
+                      }
+                    ).then(() => toggleModal())
+                  }
+                }
+                />  
+                 )}
+                </Mutation>
+                
                   
                 </>
               }
