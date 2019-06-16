@@ -154,7 +154,7 @@ const CardGrid = ({filterTypeId, modal, toggleModal}) => (
       heading={modal.name}
       onDismiss={toggleModal}
       footer={<CardFooter modal={modal} toggleModal={toggleModal} />}
-      size="sm"
+      size="md"
     >
       <Box padding={2}>
         <img alt="descriptive" src={modal.imageUrl} width="400px" />
