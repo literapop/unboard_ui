@@ -10,6 +10,7 @@ const Card = ({imageUrl, activityName, type, toggleModal, activity}) => {
         <p>Type of Activity: {type}</p>
       </figcaption>
     </figure>
+
    );
 }
 
