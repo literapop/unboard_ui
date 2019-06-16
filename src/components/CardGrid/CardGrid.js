@@ -129,8 +129,8 @@ const CardGrid = ({modal, toggleModal, cards}) => (
                 <img alt="descriptive" src={modal.imageUrl} width="400px" />
                 {modal.description ? <p>{modal.description}</p> : ''}
                 <p><b>When</b>: {Date(modal.startTime).slice(0,15)}</p>
-                <p><b>Activity Type</b>: {modal.type ? modal.type.name : ''}</p>
-                <p><b>Location</b>: {modal.location ? modal.location.name : ''}</p>
+                <p><b>Activity Type</b>: {modal.type ? modal.type.name : 'unknown'}</p>
+                <p><b>Location</b>: {modal.location ? modal.location.name : 'TBD'}</p>
 
                 {modal.ads && modal.ads.length > 0
                 ? <> 
