@@ -12,7 +12,7 @@ const Home = ({cards, filterTypeId, modal, onPillClick, toggleModal}) => {
     <div id="columns">  
       <CardGrid 
         cards={cards}
-        toggleModa={toggleModal}
+        toggleModal={toggleModal}
         modal={modal}
         filterTypeId={filterTypeId}
       />
