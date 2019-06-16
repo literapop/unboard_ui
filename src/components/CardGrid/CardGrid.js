@@ -24,6 +24,15 @@ const CardGrid = ({modal, toggleModal, cards}) => (
     gql`
         {activities {
     sponsored
+    ads {
+      images {
+        href
+      }
+      name
+      salePrice
+      url
+      
+    }
     id
     name
       description
@@ -54,6 +63,8 @@ const CardGrid = ({modal, toggleModal, cards}) => (
       if (error) return <p>Error :(</p>;
 
       return data.activities.map(activity => (
+
+        
         <Card 
           activity = {activity}
           toggleModal = {toggleModal}
@@ -94,7 +105,6 @@ const CardGrid = ({modal, toggleModal, cards}) => (
                   color="red"
                   text="Delete Event!"
                   onClick={e => {
-                    console.log(modal)
                     deleteActivity(
                       { variables: 
                         { activityId: parseInt(modal.id),
@@ -115,6 +125,19 @@ const CardGrid = ({modal, toggleModal, cards}) => (
             >
               <Box padding={2}>
                 <Heading size="sm">{modal.description}</Heading>
+                {modal.ads.length > 0 
+                ? <> 
+                <p>Sponsored Post</p>
+                <a href={modal.ads[0].url} target="_blank">
+                <h4>{modal.ads[0].name}</h4>
+                </a>
+                <p>{`$${modal.ads[0].salePrice}`}</p> 
+                <img src={modal.ads[0].images[0].href} alt="advertisement" width="200px"/>
+                
+                </>
+                : ''
+                }
+                
               </Box>
             </Modal>
           )}
