@@ -65,7 +65,8 @@ const CardGrid = ({modal, toggleModal, cards}) => (
       return data.activities.map(activity => (
 
         
-        <Card 
+        <Card
+          key={activity.id}
           activity = {activity}
           toggleModal = {toggleModal}
           modal = {modal}

@@ -9,7 +9,7 @@ const Home = ({modal, toggleModal, cards}) => {
     <>
     <Header />   
     
-    <div className="card-list">
+    <div id="columns">
       
      <CardGrid 
      cards={cards}
