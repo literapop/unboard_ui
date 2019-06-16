@@ -26,8 +26,17 @@
    transition: opacity .4s ease-in-out;
    display: inline-block;
    column-break-inside: avoid;
+
+   @media screen 
  }
  
+ @media screen and (max-width: 400px) {
+  div#columns figure {
+    padding: 4px;
+    margin-left: -5px;
+  }
+}
+
  div#columns figure img {
    width: 100%;
    height: auto;
@@ -131,6 +140,7 @@
 
 .cardType {
   text-align: right;
+  margin-bottom: -8px;
 }
 
 .profileName {

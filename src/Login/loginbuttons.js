@@ -4,7 +4,6 @@ import './loginbuttons.css';
 
 const LoginButton = ({redirect, loginUser}) => {
   return ( 
-    
       redirect 
       ? <Redirect push to="./home" /> 
       :  <>
@@ -14,32 +13,10 @@ const LoginButton = ({redirect, loginUser}) => {
         id="studentbutton"
         onClick={loginUser}
       >
-        <span id="guest">
-          <i className="fa fa-university" aria-hidden="true" />
-        </span>
-        <span className="buttontext">
-          {
-            'Continue As Student'
-          }
-        </span>
+        <span id="guest"><i className="fa fa-university" aria-hidden="true" /></span>
+        <span className="buttontext">Continue As Student</span>
       </button>
-
-      <button
-        type="submit"
-        id="guestbutton"
-        onClick={loginUser}
-      >
-        <span id="guest">
-          <i className="fa fa-question-circle" aria-hidden="true" />
-        </span>
-        <span className="buttontext">
-          {'Continue As Guest'}
-        </span>
-      </button>
-      
-
     </>
-    
    );
 }
  
