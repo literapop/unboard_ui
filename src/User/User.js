@@ -1,26 +1,24 @@
 import React from 'react';
 import Header from '../components/Header/Header';
-import {Container, Box,Card, Avatar, Text, Link,} from 'gestalt';
+import {Container, Box,Card, Avatar, Text, Link, Spinner} from 'gestalt';
 import { Query } from 'react-apollo';
-import CardGrid from '../components/CardGrid/CardGrid'
 import gql from 'graphql-tag';
 import './User.css';
 
 const GET_USER = gql `
-    {
-      user {
+      { 
         user(id: 1) {
-          email
-          lastName
-          ownedActivities {
-            name
-          }
-          participatingActivities {
-            name
-          }
-        }
-      }
-    }
+                email
+                lastName
+                ownedActivities {
+                  name
+                }
+                participatingActivities {
+                  name
+                }
+              }
+            }
+    
   `;
 
 
@@ -51,17 +49,7 @@ const User = ({
         </Card>
     </Box>
     
-    <h1>Activities</h1>
-
-    
-    {/* < div class = "card-list" >
-          < CardGrid
-            cards={cards}
-            toggleModal = {toggleModal}
-            modal = {modal}/>
-    </div> */}
-    
-
+    <h1>Activities</h1>   
 
   < Query query = {GET_USER} >
       {
@@ -71,20 +59,19 @@ const User = ({
           data,
           refetch
         }) => {
-      // if (loading) return <Spinner/>;
+      if (loading) return <Spinner/>;
       if (error) return <p>Error :(</p>;
 
     
       return (
         <>
-          {
-            data.user.ownedActivities.name
+          { 
+            data.user.email
           }
 
         </>
       );
     }}
-
         
         </Query>
 
