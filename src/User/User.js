@@ -1,6 +1,6 @@
 import React from 'react';
 import Header from '../components/Header/Header';
-import {Text, Box, Button, Container, Label, TextField, SelectList, Spinner} from 'gestalt';
+import {Container, Spinner} from 'gestalt';
 import { Query, Mutation } from 'react-apollo';
 import gql from 'graphql-tag';
 import './User.css';
@@ -52,11 +52,10 @@ const GET_USER = gql `
 
 
 const User = () => (
-
-
-  < Query query = {GET_USER} >
-  
-
+<>
+ <Header/>
+ <p>Hello User!</p>
+  {/* < Query query = {GET_USER} >
       {
         ({
           loading,
@@ -71,7 +70,7 @@ const User = () => (
       return (
         <>
         
-          <Header/>
+         
             
           <Container>
 
@@ -87,8 +86,8 @@ const User = () => (
     }}
 
         
-        </Query>
-
+        </Query> */}
+</>
 )
  
 
