@@ -1,5 +1,4 @@
 import React from 'react';
-import './Card.css';
 
 const Card = ({imageUrl, activityName, type, toggleModal, activity}) => {
   return (
@@ -10,7 +9,6 @@ const Card = ({imageUrl, activityName, type, toggleModal, activity}) => {
         <p>Type of Activity: {type}</p>
       </figcaption>
     </figure>
-
    );
 }
 
