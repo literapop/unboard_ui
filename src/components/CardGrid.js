@@ -9,6 +9,84 @@ const DELETE_ACTIVITY =  gql`
   mutation deleteActivity($activityId: Int!, $userId: Int!) { deleteActivity(activityId: $activityId, userId: $userId) { id } }
 `;
 
+const TYPED_ACTIVITIES = gql`
+  query Activities($typeId: Int) {
+    activities(typeId: $typeId) {
+      sponsored
+      ads {
+        images {
+          href
+        }
+        name
+        salePrice
+        url
+      }
+      id
+      name
+      description
+      startTime
+      endTime
+      imageUrl
+      link
+      type {
+        name
+      }
+      accessibility
+      views
+      location {
+        name
+        address1
+      }
+      creator {
+        firstName
+        lastName
+        email
+        password
+      }
+      price
+    }
+  }
+`;
+
+const ALL_ACTIVITIES = gql`
+  {
+    activities {
+      sponsored
+      ads {
+        images {
+          href
+        }
+        name
+        salePrice
+        url
+      }
+      id
+      name
+      description
+      startTime
+      endTime
+      imageUrl
+      link
+      type {
+        name
+      }
+      accessibility
+      views
+      location {
+        name
+        address1
+      }
+      creator {
+        firstName
+        lastName
+        email
+        password
+      }
+      price
+    }
+  }
+`;
+
 const CardFooter = ({ modal, toggleModal }) => (
   <>
     <center>
@@ -43,47 +121,12 @@ const CardFooter = ({ modal, toggleModal }) => (
   </>
 );
 
-const CardGrid = ({modal, toggleModal, cards}) => (
+const CardGrid = ({filterTypeId, modal, toggleModal}) => (
   <>
-  <Query query={
-    gql`
-        {activities {
-    sponsored
-    ads {
-      images {
-        href
-      }
-      name
-      salePrice
-      url
-      
-    }
-    id
-    name
-      description
-    startTime
-    endTime
-    imageUrl
-    link
-    type {
-      name
-    }
-    accessibility
-    views
-    location {
-      name
-      address1
-    }
-        creator {
-      firstName
-      lastName
-      email
-      password
-    }
-    price
-  }}
-    `
-  }>
+  <Query
+    query={filterTypeId ? TYPED_ACTIVITIES : ALL_ACTIVITIES}
+    variables={filterTypeId ? {typeId: filterTypeId} : {}}
+  >
     {({ loading, error, data, refetch }) => {
       if (loading) return <Spinner show={true} accessibilityLabel="Activities are loading"  />;
       if (error) return <p>Error :(</p>;
