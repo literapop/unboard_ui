@@ -3,6 +3,7 @@ import Card from '../Card/Card'
 import {Spinner, Modal, Heading, Box, Button} from 'gestalt';
 import { Query, Mutation } from 'react-apollo';
 import gql from 'graphql-tag';
+import { updateLocale } from 'moment';
 
 const DELETE_ACTIVITY =  gql`
 mutation deleteActivity(
@@ -89,6 +90,7 @@ const CardGrid = ({modal, toggleModal, cards}) => (
               heading={modal.name}
               onDismiss={toggleModal}
               footer={<>
+              <center>
               <Button
                   inline 
                   accessibilityLabel="Register"
@@ -118,21 +120,42 @@ const CardGrid = ({modal, toggleModal, cards}) => (
                  )}
                 </Mutation>
                 
-                  
+                </center>
                 </>
               }
               size="sm"
             >
               <Box padding={2}>
-                {modal.description ? <Heading size="sm">{modal.description}</Heading> : ''}
+                <img alt="descriptive" src={modal.imageUrl} width="400px" />
+                {modal.description ? <p>{modal.description}</p> : ''}
+                <p><b>When</b>: {Date(modal.startTime).slice(0,15)}</p>
+                <p><b>Activity Type</b>: {modal.type ? modal.type.name : ''}</p>
+                <p><b>Location</b>: {modal.location ? modal.location.name : ''}</p>
+
                 {modal.ads && modal.ads.length > 0
                 ? <> 
-                <p>Sponsored Post</p>
-                <a href={modal.ads[0].url} target="_blank">
-                <h4>{modal.ads[0].name}</h4>
-                </a>
-                <p>{`$${modal.ads[0].salePrice}`}</p> 
-                <img src={modal.ads[0].images[0].href} alt="advertisement" width="200px"/>
+                <br/>
+                <hr/>
+                <p><b>Sponsored Ad</b></p>
+                {modal.ads.map(ad => {
+                  if (ad.images && ad.images.length > 0) {
+                    return (
+                      <div style={{width: 100, float: "left", margin: 10}}>
+                        <a href={ad.url} target="_blank" rel="noopener noreferrer">
+                          <div style={{height: 130}}>
+                            <img src={ad.images[0].href} alt="advertisement" width="100px"/>
+                          </div>
+                          <p style={{whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis"}}>
+                            {ad.name}
+                          </p>
+                        </a>
+                        <p>{`$${ad.salePrice}`}</p> 
+                      </div>
+                    );
+                  } else {
+                    return null;
+                  }
+                })}
                 
                 </>
                 : ''

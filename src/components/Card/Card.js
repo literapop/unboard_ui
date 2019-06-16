@@ -8,7 +8,7 @@ const Card = ({id, imageUrl, activityName, activityDescription, startDate, locat
     className="card"
     key = {id}
     >
-          <Letterbox width={250} height={250} contentAspectRatio={1}>
+          <Letterbox contentAspectRatio={1}>
       <Image
         alt="tall"
         src={imageUrl.toString()}
@@ -30,6 +30,8 @@ const Card = ({id, imageUrl, activityName, activityDescription, startDate, locat
       Start Date: {startDate}
     </p>
     <p>Location: {location}</p>
+    <center>
+
     <Button
     inline 
       accessibilityLabel="Like"
@@ -52,6 +54,7 @@ const Card = ({id, imageUrl, activityName, activityDescription, startDate, locat
       text="Open"
       onClick={() => toggleModal(activity)}
     />
+    </center>
   </div>
    );
 }
