@@ -124,8 +124,8 @@ const CardGrid = ({modal, toggleModal, cards}) => (
               size="sm"
             >
               <Box padding={2}>
-                <Heading size="sm">{modal.description}</Heading>
-                {modal.ads.length > 0 
+                {modal.description ? <Heading size="sm">{modal.description}</Heading> : ''}
+                {modal.ads && modal.ads.length > 0
                 ? <> 
                 <p>Sponsored Post</p>
                 <a href={modal.ads[0].url} target="_blank">
