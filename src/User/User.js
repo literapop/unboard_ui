@@ -7,12 +7,44 @@ import './User.css';
 
 const GET_USER = gql `
     {
-      user {
-        user(email: "brennan3@gmail.com") {
-          id
-          email
-          firstName
-          lastName
+      query activities {
+        activities(creatorId: 1) {
+          sponsored
+          name
+          description
+          startTime
+          endTime
+          imageUrl
+          link
+          accessibility
+          likeCount
+          ads {
+            images {
+              href
+            }
+            name
+            salePrice
+            url
+          }
+          participantCapacity
+          registeredParticipants {
+            id
+            email
+            firstName
+            lastName
+          }
+          location {
+            name
+            address1
+          }
+          creator {
+            firstName
+            lastName
+            email
+            password
+          }
+          price
+          views
         }
       }
     }
@@ -43,17 +75,9 @@ const User = () => (
             
           <Container>
 
-
-
-            <TextField
-              id = "Email"
-              // onChange={this.handleChange}
-              placeholder="User Email"
-              value = {
-                data.user.email
-              }
-              type="text"
-            />
+            {
+              data.activities.name
+            }
 
 
 
