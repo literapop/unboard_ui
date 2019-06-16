@@ -126,10 +126,10 @@ const CardGrid = ({modal, toggleModal, cards}) => (
         <br/>
         <hr/>
         <p><b>Sponsored Ad</b></p>
-        {modal.ads.map(ad => {
+        {modal.ads.map((ad, i) => {
           if (ad.images && ad.images.length > 0) {
             return (
-              <div style={{width: 100, float: "left", margin: 10}}>
+              <div style={{width: 100, float: "left", margin: 10}} key={i}>
                 <a href={ad.url} target="_blank" rel="noopener noreferrer">
                   <div style={{height: 130}}>
                     <img src={ad.images[0].href} alt="advertisement" width="100px"/>
