@@ -45,6 +45,7 @@ const CardGrid = ({modal, toggleModal, cards}) => (
       name
     }
     accessibility
+    views
     location {
       name
       address1
@@ -131,6 +132,7 @@ const CardGrid = ({modal, toggleModal, cards}) => (
                 <p><b>When</b>: {Date(modal.startTime).slice(0,15)}</p>
                 <p><b>Activity Type</b>: {modal.type ? modal.type.name : 'Mystery'}</p>
                 <p><b>Location</b>: {modal.location ? modal.location.name : 'TBD'}</p>
+                <p><b>Views</b>: {modal.views || 0 }</p>
 
                 {modal.ads && modal.ads.length > 0
                 ? <> 
