@@ -1,15 +1,14 @@
 import React from 'react';
 import Header from '../components/Header';
 import CardGrid from '../components/CardGrid'
+import Pills from '../components/Pills';
 import './Home.css';
 
 const Home = ({modal, toggleModal, cards}) => {
   return ( 
     <>
     <Header />   
-    <div>
-      <button>relaxation</button>
-    </div>
+    <Pills />
     <div id="columns">  
      <CardGrid 
       cards={cards}
