@@ -111,3 +111,24 @@
     display: none;
   }
 }
+
+.pill {
+  border-radius: 25px;
+  background-color: #5bc0de;
+  line-height: 1.5;
+  margin: 10px 2px;
+  border: 0;
+  cursor: pointer;
+  padding: .5em 1em;
+  position: relative;
+  text-align: center;
+  text-decoration: none;
+  vertical-align: baseline;
+  white-space: nowrap;
+  user-select: none;
+  color: #fff;
+}
+
+.cardType {
+  text-align: right;
+}

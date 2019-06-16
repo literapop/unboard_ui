@@ -20,10 +20,10 @@ const Pills = ({ onPillClick }) => (
         if (loading) return <Spinner show={true} accessibilityLabel="Loading..." />;
         if (error) return <p>Error :(</p>;
         
-        const buttons = [<button key="noFilter" onClick={() => onPillClick()}>all</button>];
+        const buttons = [<button className="pill" key="noFilter" onClick={() => onPillClick()}>all</button>];
 
         return buttons.concat(data.types.map(({ id, name }) => (
-          <button key={id} onClick={() => onPillClick(id)}>{name}</button>
+          <button className="pill" key={id} onClick={() => onPillClick(id)}>{name}</button>
         )));
     }}
     </Query>
