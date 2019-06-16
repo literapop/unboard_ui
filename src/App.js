@@ -28,9 +28,9 @@ class App extends Component {
         description: '',
         accessibility: '',
         price: ''
-      }
-     }
-    
+      },
+      filterTypeId: null
+    }
   }
 
   componentDidMount() {
@@ -66,6 +66,10 @@ class App extends Component {
     console.log('activiety: ', activity);
     this.setState({ newActivity: Object.assign({}, this.state.newActivity, activity) });
   }
+
+  handlePillClick = id => {
+    this.setState({ filterTypeId: id });
+  }
  
   render() { 
     return (     
@@ -97,10 +101,13 @@ class App extends Component {
           
         <Route path='/home' component={() => 
           <Home 
-            modal = {this.state.modal}
+            modal={this.state.modal}
             toggleModal={this.toggleModal}
             toggleMobileNav={this.toggleMobileNav} 
-            cards = {this.state.cards}/>
+            cards={this.state.cards}
+            filterTypeId={this.state.filterTypeId}
+            onPillClick={this.handlePillClick.bind(this)}
+          />
         } />  
         
       </Router> 

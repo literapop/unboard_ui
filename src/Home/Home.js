@@ -4,16 +4,18 @@ import CardGrid from '../components/CardGrid'
 import Pills from '../components/Pills';
 import './Home.css';
 
-const Home = ({modal, toggleModal, cards}) => {
+const Home = ({cards, filterTypeId, modal, onPillClick, toggleModal}) => {
   return ( 
     <>
     <Header />   
-    <Pills />
+    <Pills onPillClick={onPillClick}/>
     <div id="columns">  
-     <CardGrid 
-      cards={cards}
-      toggleModal = {toggleModal}
-      modal = {modal}/>
+      <CardGrid 
+        cards={cards}
+        toggleModa={toggleModal}
+        modal={modal}
+        filterTypeId={filterTypeId}
+      />
     </div>
   </>
   );
