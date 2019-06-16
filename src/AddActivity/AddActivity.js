@@ -88,14 +88,7 @@ const AddActivity = () => (
         <Container>
           
           <Box >
-            < Box marginBottom = {
-              2
-            }
-            class = "title" >
-              <Label htmlFor="text">
-                <Text>Activity Title</Text>
-              </Label>
-            </Box>
+            <h1>Activity Title</h1>
 
             <TextField
               id = "Activity"
@@ -107,14 +100,7 @@ const AddActivity = () => (
           </Box>
 
           <Box>
-            < Box marginBottom = {
-              2
-            }
-            class = "title" >
-              <Label htmlFor="text">
-                <Text>Activity Type</Text>
-              </Label>
-            </Box>
+            <h2>Activity Type</h2>
 
             <TextField
               id = "Activity"
@@ -126,15 +112,8 @@ const AddActivity = () => (
           </Box>
 
           <Box>
-            < Box marginBottom = {
-              2
-            }
-            class = "title" >
-              <Label htmlFor="text">
-                <Text>Participation Capacity</Text>
-              </Label>
-            </Box>
-
+            <h2>Participation Capacity</h2>
+           
             < TextField
               id = "Activity"
               // onChange={this.handleChange}
@@ -145,15 +124,8 @@ const AddActivity = () => (
           </Box>
 
           <Box>
-            < Box marginBottom = {
-              2
-            }
-            class = "title" >
-              <Label htmlFor="text">
-                <Text>Price</Text>
-              </Label>
-            </Box>
-
+            <h2>Price</h2>
+           
             <TextField
               id = "Activity"
               // onChange={this.handleChange}
@@ -170,6 +142,9 @@ const AddActivity = () => (
               refetch();
             }
           }
+          inline
+          size="lg"
+
           />
 
 
@@ -192,7 +167,11 @@ const AddActivity = () => (
                     }
                   ).then(() => refetch())
                 }
-              }/>  
+              }
+              inline 
+              color="blue"
+              size="lg"
+              class="submitter"/>
               )
             }
           
