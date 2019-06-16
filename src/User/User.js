@@ -1,5 +1,5 @@
 import React from 'react';
-import Header from '../components/Header/Header';
+import Header from '../components/Header';
 import {
   Container,
   Box,
@@ -8,7 +8,7 @@ import {
   Link,
   Text
 } from 'gestalt';
-import CardGrid from '../components/CardGrid/CardGrid'
+import CardGrid from '../components/CardGrid'
 // import { Query } from 'react-apollo';
 // import gql from 'graphql-tag';
 import '../Home/Home.css';

@@ -2,7 +2,7 @@ import React from 'react';
 import { Box, Button, Container,  TextField,  Spinner} from 'gestalt';
 import { Query, Mutation } from 'react-apollo';
 import gql from 'graphql-tag';
-import Header from '../components/Header/Header';
+import Header from '../components/Header';
 import './AddActivity.css';
 
 

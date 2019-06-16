@@ -1,5 +1,5 @@
 import React from 'react';
-import Card from '../Card/Card'
+import Card from './Card'
 import {Spinner, Modal, Box, Button} from 'gestalt';
 import { Query, Mutation } from 'react-apollo';
 import gql from 'graphql-tag';
