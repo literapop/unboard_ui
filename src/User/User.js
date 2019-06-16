@@ -22,15 +22,11 @@ const GET_USER = gql `
   `;
 
 
-const User = ({
-    modal,
-    toggleModal,
-    cards
-  }) => (
+const User = () => (
 <>
  <Header/>
  < Container>
-    <Box maxWidth={400} padding={2} column={20}>
+    <Box maxWidth={400} padding={2} column={5}>
         <Card
           image={
             <Avatar
@@ -66,7 +62,7 @@ const User = ({
       return (
         <>
           { 
-            data.user.email
+            data.user.ownedActivities.name
           }
 
         </>
