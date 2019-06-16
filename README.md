@@ -6,9 +6,19 @@
 Find Us at 
 [UnBoard.Today](http://www.UnBoard.Today)
 
-In the project directory, you can run:
+### Setup
 
-### `npm start`
+First, install deps:
+
+```bash
+npm install
+```
+
+Next, start the project. In the project directory, you can run:
+
+```bash
+npm start
+```
 
 Runs the app in the development mode.<br>
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
