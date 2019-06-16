@@ -79,7 +79,7 @@ class AddActivity extends Component {
 
   validateFields = () => {
     const { price } = this.state;
-    if (!price || price > 1) {
+    if (typeof price === 'undefined' || price === '' || price > 1) {
       alert('Please enter a price between 0 and 1');
       return false;
     }
