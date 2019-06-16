@@ -87,7 +87,7 @@ const ALL_ACTIVITIES = gql`
   }
 `;
 
-const CardFooter = ({ modal, toggleModal }) => (
+const CardFooter = ({ modal, onDelete }) => (
   <>
     <center>
       <Button
@@ -97,6 +97,7 @@ const CardFooter = ({ modal, toggleModal }) => (
         color="blue"
         text="Register"
       />
+      &nbsp;&nbsp;
       <Mutation mutation={DELETE_ACTIVITY}>
         {(deleteActivity, refetchQuery ) => (
           <Button
@@ -112,7 +113,8 @@ const CardFooter = ({ modal, toggleModal }) => (
                     userId: 1
                   }
                 }
-              ).then(() => toggleModal())
+              );
+              onDelete();
             }}
           />  
         )}
@@ -124,6 +126,7 @@ const CardFooter = ({ modal, toggleModal }) => (
 const CardGrid = ({filterTypeId, modal, toggleModal}) => (
   <>
   <Query
+    fetchPolicy="cache-and-network"
     query={filterTypeId ? TYPED_ACTIVITIES : ALL_ACTIVITIES}
     variables={filterTypeId ? {typeId: filterTypeId} : {}}
   >
@@ -131,71 +134,77 @@ const CardGrid = ({filterTypeId, modal, toggleModal}) => (
       if (loading) return <Spinner show={true} accessibilityLabel="Activities are loading"  />;
       if (error) return <p>Error :(</p>;
 
-      return data.activities.map(activity => (
-        <Card
-          key={activity.id}
-          activity = {activity}
-          toggleModal = {toggleModal}
-          modal = {modal}
-          id = {activity.id}
-          imageUrl={`https://img.imgeng.in/${activity.imageUrl}`}
-          activityName={activity.name}
-          type={activity.type ? activity.type.name : 'Mystery'}
-          activityDescription={activity.description}
-          startDate={Date(activity.startTime).slice(0,15)}
-          location={activity.location ? activity.location.name : "TBD"}/>
-      ), () => refetch());
-    }}
-  </Query>
+      return (
+        <>
+          {data.activities.map(activity => (
+            <Card
+              key={activity.id}
+              activity={activity}
+              toggleModal={toggleModal}
+              modal={modal}
+              id={activity.id}
+              imageUrl={`https://img.imgeng.in/${activity.imageUrl}`}
+              activityName={activity.name}
+              type={activity.type ? activity.type.name : 'Mystery'}
+              activityDescription={activity.description}
+              startDate={Date(activity.startTime).slice(0,15)}
+              location={activity.location ? activity.location.name : "TBD"}/>
+          ), () => refetch())}
 
-  {modal && (
-    <Modal
-      accessibilityCloseLabel="close"
-      accessibilityModalLabel="View activity details"
-      heading={modal.name}
-      onDismiss={toggleModal}
-      footer={<CardFooter modal={modal} toggleModal={toggleModal} />}
-      size="sm"
-    >
-      <Box padding={2}>
-        <img alt="descriptive" src={modal.imageUrl} width="400px" />
-        {modal.description ? <p>{modal.description}</p> : ''}
-        <p><b>When</b>: {Date(modal.startTime).slice(0,15)}</p>
-        <p><b>Activity Type</b>: {modal.type ? modal.type.name : 'Mystery'}</p>
-        <p><b>Location</b>: {modal.location ? modal.location.name : 'TBD'}</p>
-        <p><b>Views</b>: {modal.views || 0 }</p>
+          {modal && (
+            <Modal
+              accessibilityCloseLabel="close"
+              accessibilityModalLabel="View activity details"
+              heading={modal.name}
+              onDismiss={toggleModal}
+              footer={<CardFooter modal={modal} onDelete={() => {
+                refetch();
+                toggleModal();
+              }}/>}
+              size="sm"
+            >
+              <Box padding={2}>
+                <img alt="descriptive" src={modal.imageUrl} width="400px" />
+                {modal.description ? <p>{modal.description}</p> : ''}
+                <p><b>When</b>: {Date(modal.startTime).slice(0,15)}</p>
+                <p><b>Activity Type</b>: {modal.type ? modal.type.name : 'Mystery'}</p>
+                <p><b>Location</b>: {modal.location ? modal.location.name : 'TBD'}</p>
+                <p><b>Views</b>: {modal.views || 0 }</p>
 
-        {modal.ads && modal.ads.length > 0
-        ? <> 
-        <br/>
-        <hr/>
-        <p><b>Sponsored Ad</b></p>
-        {modal.ads.map((ad, i) => {
-          if (ad.images && ad.images.length > 0) {
-            return (
-              <div style={{width: 100, float: "left", margin: 10}} key={i}>
-                <a href={ad.url} target="_blank" rel="noopener noreferrer">
-                  <div style={{height: 130}}>
-                    <img src={ad.images[0].href} alt="advertisement" width="100px"/>
-                  </div>
-                  <p style={{whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis"}}>
-                    {ad.name}
-                  </p>
-                </a>
-                <p>{`$${ad.salePrice}`}</p> 
-              </div>
-            );
-          } else {
-            return null;
-          }
-        })}
-        
+                {modal.ads && modal.ads.length > 0
+                ? <> 
+                <br/>
+                <hr/>
+                <p><b>Sponsored Ad</b></p>
+                {modal.ads.map((ad, i) => {
+                  if (ad.images && ad.images.length > 0) {
+                    return (
+                      <div style={{width: 100, float: "left", margin: 10}} key={i}>
+                        <a href={ad.url} target="_blank" rel="noopener noreferrer">
+                          <div style={{height: 130}}>
+                            <img src={ad.images[0].href} alt="advertisement" width="100px"/>
+                          </div>
+                          <p style={{whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis"}}>
+                            {ad.name}
+                          </p>
+                        </a>
+                        <p>{`$${ad.salePrice}`}</p> 
+                      </div>
+                    );
+                  } else {
+                    return null;
+                  }
+                })}
+                
+                </>
+                : ''
+                }
+              </Box>
+            </Modal>
+          )}
         </>
-        : ''
-        }
-      </Box>
-    </Modal>
-  )}
+      )}}
+  </Query>
 </>
 )
  
