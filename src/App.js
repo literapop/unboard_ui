@@ -20,7 +20,15 @@ class App extends Component {
         events: []
       },
       isLoggedIn: false, 
-      modal: null
+      modal: null,
+      newActivity: {
+        name: '',
+        type: '',
+        participantCapacity: '0',
+        description: '',
+        accessibility: '',
+        price: ''
+      }
      }
     
   }
@@ -53,6 +61,10 @@ class App extends Component {
     ? (this.setState({modal: null})) 
     : (this.setState({modal: obj}))
   }
+
+  updateNewActivity = activity => {
+    this.setState({ newActivity: Object.assign({}, this.state.newActivity, activity) });
+  }
  
 
   render() { 
@@ -71,7 +83,8 @@ class App extends Component {
         <Route path='/AddActivity' component={() => 
           <AddActivity
             toggleMobileNav={this.toggleMobileNav} 
-            
+            updateNewActivity={this.updateNewActivity}
+            newActivity={this.state.newActivity}
             />} />  
         
         <Route path='/user' component={() => 

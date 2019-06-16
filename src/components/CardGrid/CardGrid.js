@@ -21,7 +21,7 @@ mutation deleteActivity(
 
 const CardGrid = ({modal, toggleModal, cards}) => (
   <>
-  <Query query={
+  <Query pollInterval={1000} query={
     gql`
         {activities {
     sponsored
@@ -62,7 +62,10 @@ const CardGrid = ({modal, toggleModal, cards}) => (
   }>
     {({ loading, error, data, refetch }) => {
       if (loading) return <Spinner/>;
-      if (error) return <p>Error :(</p>;
+      if (error) {
+        console.log(error);
+        return <p>Error :(</p>;
+      }
 
       return data.activities.map(activity => (
 

@@ -1,6 +1,7 @@
 import React from 'react';
 import { Box, Button, Container,  TextField,  Spinner} from 'gestalt';
-import { Query, Mutation } from 'react-apollo';
+import { Mutation, withApollo } from 'react-apollo';
+import { withRouter } from 'react-router';
 import gql from 'graphql-tag';
 import Header from '../components/Header/Header';
 import './AddActivity.css';
@@ -45,12 +46,11 @@ const GET_SUGGESTIONS = gql `
     typeId: $typeId, 
     locationId: $locationId, 
     participantCapacity: $participantCapacity) {    
-      id
       participantCapacity
       startTime
       endTime
       type {
-          id
+        id
         name
       }
       location {
@@ -63,38 +63,21 @@ const GET_SUGGESTIONS = gql `
  
 
 
-const AddActivity = () => (
-
-
-  < Query query = {GET_SUGGESTIONS} >
-  
-
-      {
-        ({
-          loading,
-          error,
-          data,
-          refetch
-        }) => {
-      if (loading) return <Spinner/>;
-      if (error) return <p>Error :(</p>;
-
-    
-      return (
-        <>
-        
+const AddActivity = ({ client, newActivity, updateNewActivity, history }) => (
+      <>
         <Header/>
-          
         <Container>
           
           <Box >
             <h1>Activity Title</h1>
 
-            <TextField
-              id = "Activity"
-              // onChange={this.handleChange}
+            <input
+              autoFocus
+              id="newName"
+              key="newName"
+              onChange={e => updateNewActivity({ name: e.target.value })}
               placeholder="Activity Title"
-              value={data.suggestion.name}
+              value={newActivity.name}
               type="text"
             />
           </Box>
@@ -102,11 +85,12 @@ const AddActivity = () => (
           <Box>
             <h2>Activity Type</h2>
 
-            <TextField
-              id = "Activity"
-              // onChange={this.handleChange}
+            <input
+              id="newType"
+              key="newType"
+              onChange={e => updateNewActivity({ type: e.value })}
               placeholder="Activity Title"
-              value={data.suggestion.type.name}
+              value={newActivity.type}
               type="text"
             />
           </Box>
@@ -114,11 +98,12 @@ const AddActivity = () => (
           <Box>
             <h2>Participation Capacity</h2>
            
-            < TextField
-              id = "Activity"
-              // onChange={this.handleChange}
+            <input
+              id="newPc"
+              key="newPc"
+              onChange={e => updateNewActivity({ participantCapacity: e.value })}
               placeholder="How many people can participate"
-              value={data.suggestion.participantCapacity}
+              value={newActivity.participantCapacity}
               type="text"
             />
           </Box>
@@ -126,21 +111,26 @@ const AddActivity = () => (
           <Box>
             <h2>Price</h2>
            
-            <TextField
-              id = "Activity"
-              // onChange={this.handleChange}
+            <input
+              id="newPrice"
+              key="newPrice"
+              onChange={e => updateNewActivity({ price: e.value })}
               placeholder="Activity Title"
-              value={data.suggestion.price}
+              value={newActivity.price}
               type="text"
             />
           </Box>
 
-          < Button
-          text = "Suggest Me Something"
-          onClick = {
-            () => {
-              refetch();
-            }
+          <Button
+          text="Suggest Me Something"
+          onClick={
+            () => (
+              client.query({ query: GET_SUGGESTIONS, fetchPolicy: "network-only" }).then(({ data: { suggestion } }) => {
+                window.suggestion = suggestion;
+                console.log('hereeeeee', suggestion)
+                updateNewActivity(Object.assign({}, suggestion, { type: suggestion.type.name }))
+              })
+            )
           }
           inline
           size="lg"
@@ -152,20 +142,31 @@ const AddActivity = () => (
             {
               (createActivity, ) => (
                 <Button text = "Submit" onClick={e => {
-                  console.log(data)
+                  console.log('fooooooo')
+                  console.log(newActivity)
                   // e.preventDefault();
                   createActivity(
                     { variables: 
-                      { accessibility: data.suggestion.accessibility,
+                      { accessibility: newActivity.accessibility,
                         creatorId: 1,
-                        description: data.suggestion.name,
-                        name: data.suggestion.name,
+                        description: newActivity.name,
+                        name: newActivity.name,
                         typeId: 5,
-                        price: data.suggestion.price, 
-                        participantCapacity: data.suggestion.participantCapacity
+                        price: newActivity.price, 
+                        participantCapacity: newActivity.participantCapacity
                       }
                     }
-                  ).then(() => refetch())
+                  ).then(() => {
+                    updateNewActivity({
+                      name: '',
+                      type: '',
+                      participantCapacity: '0',
+                      description: '',
+                      accessibility: '',
+                      price: ''
+                    });
+                    history.push("/home")
+                  })
                 }
               }
               inline 
@@ -181,14 +182,7 @@ const AddActivity = () => (
 
 
           </Container>
-          </>
-      );
-    }}
+        </>
+);
 
-        
-        </Query>
-
-)
- 
-
-export default AddActivity;
+export default withRouter(withApollo(AddActivity));
