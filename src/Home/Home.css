@@ -29,7 +29,9 @@
  }
  
  div#columns figure img {
-   width: 100%; height: auto;
+   width: 100%;
+   height: auto;
+   min-width: 320px;
    border-bottom: 1px solid #ccc;
    padding-bottom: 15px;
    margin-bottom: 5px;
