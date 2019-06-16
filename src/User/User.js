@@ -22,12 +22,15 @@ const User = ({
 <>
  <Header/>
  < Container>
-    <Box maxWidth={400} padding={2} column={5}>
+    < Box column = {
+      4
+    } >
         <Card
           image={
             <Avatar
               name="James Jones"
               src = "https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?cs=srgb&dl=adult-boy-casual-220453.jpg&fm=jpg"
+              verified
             />
           }>
           <Text align="center" bold size="xl">
@@ -47,9 +50,9 @@ const User = ({
   <div className="card-list">
       
      <CardGrid 
-     cards={cards}
-     toggleModal = {toggleModal}
-     modal = {modal}/>
+        cards={cards}
+        toggleModal = {toggleModal}
+        modal = {modal}/>
     </div>
   
 
