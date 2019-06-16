@@ -1,4 +1,5 @@
-## UnBoard.Today
+<!-- ## UnBoard.Today -->
+![GitHub Logo](./logo.png)
 
 ### The one stop shop to find out what is going on around campus
 
