@@ -19,9 +19,10 @@ class App extends Component {
         firstName: '',
         events: []
       },
-      isLoggedIn: false
-
+      isLoggedIn: false, 
+      modal: null
      }
+    
   }
 
   componentDidMount() {
@@ -47,6 +48,12 @@ class App extends Component {
     this.setState({redirect:true})
   }
 
+  toggleModal = (obj) => {
+    this.state.modal 
+    ? (this.setState({modal: null})) 
+    : (this.setState({modal: obj}))
+  }
+ 
 
   render() { 
     return ( 
@@ -75,6 +82,8 @@ class App extends Component {
           
         <Route path='/home' component={() => 
           <Home 
+            modal = {this.state.modal}
+            toggleModal={this.toggleModal}
             toggleMobileNav={this.toggleMobileNav} 
             mobileNavClass={this.mobileNavClass}
             cards = {this.state.cards}/>} />  

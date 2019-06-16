@@ -4,14 +4,18 @@ import CardGrid from '../components/CardGrid/CardGrid'
 import './Home.css';
 
 
-const Home = ({toggleMobileNav, mobileNavClass, cards}) => {
+const Home = ({modal, toggleModal, toggleMobileNav, mobileNavClass, cards}) => {
   return ( 
     <>
     <Header 
+    
     toggleMobileNav={toggleMobileNav} 
     mobileNavClass={mobileNavClass}
     />   <div className="card-list">
-     <CardGrid cards={cards}/>
+     <CardGrid 
+     cards={cards}
+     toggleModal = {toggleModal}
+     modal = {modal}/>
     </div>
   
   </>

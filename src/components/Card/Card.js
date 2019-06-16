@@ -2,7 +2,7 @@ import React from 'react';
 import {Text, Link, Box, Button, Letterbox, Image} from 'gestalt';
 import './Card.css';
 
-const Card = ({id, imageUrl, activityName, activityDescription, startDate, location, type}) => {
+const Card = ({id, imageUrl, activityName, activityDescription, startDate, location, type, toggleModal, activity}) => {
   return ( 
     <div 
     className="card"
@@ -43,6 +43,14 @@ const Card = ({id, imageUrl, activityName, activityDescription, startDate, locat
       size="sm"
       color="blue"
       text="Register"
+    />
+          <Button
+      inline 
+      accessibilityLabel="Open"
+      size="sm"
+      color="green"
+      text="Open"
+      onClick={() => toggleModal(activity)}
     />
   </div>
    );

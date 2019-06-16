@@ -175,7 +175,7 @@ const AddActivity = () => (
                         participantCapacity: data.suggestion.participantCapacity
                       }
                     }
-                  )
+                  ).then(() => refetch())
                 }
               }/>  
               )
