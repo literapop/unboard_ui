@@ -9,6 +9,40 @@ const DELETE_ACTIVITY =  gql`
   mutation deleteActivity($activityId: Int!, $userId: Int!) { deleteActivity(activityId: $activityId, userId: $userId) { id } }
 `;
 
+const CardFooter = ({ modal, toggleModal }) => (
+  <>
+    <center>
+      <Button
+        inline 
+        accessibilityLabel="Register"
+        size="sm"
+        color="blue"
+        text="Register"
+      />
+      <Mutation mutation={DELETE_ACTIVITY}>
+        {(deleteActivity, refetchQuery ) => (
+          <Button
+            inline 
+            accessibilityLabel="Like"
+            size="sm"
+            color="red"
+            text="Delete Event!"
+            onClick={e => {
+              deleteActivity(
+                { variables: 
+                  { activityId: parseInt(modal.id),
+                    userId: 1
+                  }
+                }
+              ).then(() => toggleModal())
+            }}
+          />  
+        )}
+      </Mutation>  
+    </center>
+  </>
+);
+
 const CardGrid = ({modal, toggleModal, cards}) => (
   <>
   <Query query={
@@ -77,40 +111,7 @@ const CardGrid = ({modal, toggleModal, cards}) => (
       accessibilityModalLabel="View activity details"
       heading={modal.name}
       onDismiss={toggleModal}
-      footer={<>
-      <center>
-      <Button
-          inline 
-          accessibilityLabel="Register"
-          size="sm"
-          color="blue"
-          text="Register"
-        />
-        <Mutation mutation={DELETE_ACTIVITY}>
-          {(deleteActivity, refetchQuery ) => (
-            <Button
-        inline 
-          accessibilityLabel="Like"
-          size="sm"
-          color="red"
-          text="Delete Event!"
-          onClick={e => {
-            deleteActivity(
-              { variables: 
-                { activityId: parseInt(modal.id),
-                  userId: 1
-                }
-              }
-            ).then(() => toggleModal())
-          }
-        }
-        />  
-          )}
-        </Mutation>
-        
-        </center>
-        </>
-      }
+      footer={<CardFooter modal={modal} toggleModal={toggleModal} />}
       size="sm"
     >
       <Box padding={2}>
@@ -149,7 +150,6 @@ const CardGrid = ({modal, toggleModal, cards}) => (
         </>
         : ''
         }
-        
       </Box>
     </Modal>
   )}
