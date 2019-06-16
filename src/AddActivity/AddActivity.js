@@ -1,10 +1,10 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { Box, Button, Container,  TextField,  Spinner} from 'gestalt';
 import { Mutation, withApollo } from 'react-apollo';
 import { withRouter } from 'react-router';
 import gql from 'graphql-tag';
 import Header from '../components/Header';
-import './AddActivity.css';
+import './AddActivity.scss';
 
 
 const GET_SUGGESTIONS = gql `
@@ -62,127 +62,137 @@ const GET_SUGGESTIONS = gql `
 `;
  
 
+class AddActivity extends Component {
+  state = {
+    name: '',
+    type: '',
+    participantCapacity: '',
+    price: ''
+  }
 
-const AddActivity = ({ client, newActivity, updateNewActivity, history }) => (
-      <>
-        <Header/>
-        <Container>
-          
-          <Box >
-            <h1>Activity Title</h1>
+  onFieldChange = data => {
+    this.setState({ ...this.state, ...data });
+  }
 
-            <input
-              autoFocus
-              id="newName"
-              key="newName"
-              onChange={e => updateNewActivity({ name: e.target.value })}
-              placeholder="Activity Title"
-              value={newActivity.name}
-              type="text"
-            />
-          </Box>
+  componentDidMount() {
+    const { newActivity } = this.props;
+    this.setState(newActivity);
+  }
 
-          <Box>
-            <h2>Activity Type</h2>
-
-            <input
-              id="newType"
-              key="newType"
-              onChange={e => updateNewActivity({ type: e.value })}
-              placeholder="Activity Title"
-              value={newActivity.type}
-              type="text"
-            />
-          </Box>
-
-          <Box>
-            <h2>Participation Capacity</h2>
-           
-            <input
-              id="newPc"
-              key="newPc"
-              onChange={e => updateNewActivity({ participantCapacity: e.value })}
-              placeholder="How many people can participate"
-              value={newActivity.participantCapacity}
-              type="text"
-            />
-          </Box>
-
-          <Box>
-            <h2>Price</h2>
-           
-            <input
-              id="newPrice"
-              key="newPrice"
-              onChange={e => updateNewActivity({ price: e.value })}
-              placeholder="Activity Title"
-              value={newActivity.price}
-              type="text"
-            />
-          </Box>
-
-          <Button
-          text="Suggest Me Something"
-          onClick={
-            () => (
-              client.query({ query: GET_SUGGESTIONS, fetchPolicy: "network-only" }).then(({ data: { suggestion } }) => {
-                window.suggestion = suggestion;
-                console.log('hereeeeee', suggestion)
-                updateNewActivity(Object.assign({}, suggestion, { type: suggestion.type.name }))
-              })
-            )
-          }
-          inline
-          size="lg"
-
+  render() {
+    const { accessibility, name, type, participantCapacity, price } = this.state;
+    const { client, newActivity, updateNewActivity, history } = this.props;
+    return (
+    <>
+    <Header/>
+    <Container>
+      <div className="activityForm">
+        <section id="contact-form" className="activityForm">
+          <h2 className="formTitle">Add Activity</h2>
+          <form id="contact" name="contact">
+          <label><span>Title</span>
+          <input
+            id="newName"
+            key="newName"
+            onChange={e => this.onFieldChange({ name: e.target.value })}
+            placeholder="Title"
+            value={name}
+            type="text"
           />
+          </label>
+          <label><span>Type</span>
+          <input
+            id="newType"
+            key="newType"
+            onChange={e => this.onFieldChange({ type: e.target.value })}
+            placeholder="Type"
+            value={type}
+            type="text"
+          />
+          </label>
 
+          <label><span>Participation Capacity</span>
+          <input
+            id="newPc"
+            key="newPc"
+            onChange={e => this.onFieldChange({ participantCapacity: e.target.value })}
+            placeholder="How many people can participate"
+            value={participantCapacity}
+            type="text"
+          />
+          </label>
 
-          <Mutation mutation ={CREATE_ACTIVITY}>
-            {
-              (createActivity, ) => (
-                <Button text = "Submit" onClick={e => {
-                  console.log('fooooooo')
-                  console.log(newActivity)
-                  // e.preventDefault();
-                  createActivity(
-                    { variables: 
-                      { accessibility: newActivity.accessibility,
-                        creatorId: 1,
-                        description: newActivity.name,
-                        name: newActivity.name,
-                        typeId: 5,
-                        price: newActivity.price, 
-                        participantCapacity: newActivity.participantCapacity
+          <label><span>Price</span>
+          <input
+            id="newPrice"
+            key="newPrice"
+            onChange={e => this.onFieldChange({ price: e.target.value })}
+            placeholder="Price"
+            value={price}
+            type="text"
+          />
+          </label>
+
+          <Mutation mutation={CREATE_ACTIVITY}>
+              {
+                (createActivity) => (
+                  <input type="submit" value="Create" onClick={e => {
+                    e.preventDefault();
+                    createActivity(
+                      { variables: 
+                        { accessibility: accessibility,
+                          creatorId: 1,
+                          description: name,
+                          name: name,
+                          typeId: 5,
+                          price: parseFloat(price), 
+                          participantCapacity: parseInt(participantCapacity)
+                        }
                       }
-                    }
-                  ).then(() => {
-                    updateNewActivity({
-                      name: '',
-                      type: '',
-                      participantCapacity: '0',
-                      description: '',
-                      accessibility: '',
-                      price: ''
-                    });
-                    history.push("/home")
-                  })
+                    ).then(() => {
+                      updateNewActivity({
+                        name: '',
+                        type: '',
+                        participantCapacity: '0',
+                        description: '',
+                        accessibility: '',
+                        price: ''
+                      });
+                      history.push("/home")
+                    })
+                  }
                 }
+                inline="true"
+                color="blue"
+                size="lg"
+                className="submitter"/>
+                )
               }
-              inline 
-              color="blue"
-              size="lg"
-              class="submitter"/>
-              )
-            }
-          
-          </Mutation>
-        
-          
+            </Mutation>
 
-
-          </Container>
-        </>
-);
+          </form>
+          <aside>
+          <p>
+            <button
+              text="Suggest Me Something"
+              className="unsure"
+              onClick={
+                () => (
+                  client.query({ query: GET_SUGGESTIONS, fetchPolicy: "network-only" }).then(({ data: { suggestion } }) => {
+                    window.suggestion = suggestion;
+                    updateNewActivity(Object.assign({}, suggestion, { type: suggestion.type.name }))
+                  })
+                )
+              }            
+            >Unsure? Get a Suggestion</button>
+          </p>
+          </aside>
+        </section>
+      </div>
+    </Container>
+  </>
+    );
+  }
+}
 
 export default withRouter(withApollo(AddActivity));
