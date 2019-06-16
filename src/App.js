@@ -77,6 +77,17 @@ class App extends Component {
         <Route path='/user' component={() => 
           <User
             toggleMobileNav={this.toggleMobileNav} 
+            modal = {
+              this.state.modal
+            }
+            toggleModal = {
+              this.toggleModal
+            }
+            
+            cards = {
+              this.state.cards
+            }
+            />}
             
             />} />  
           

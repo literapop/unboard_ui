@@ -12,6 +12,7 @@ const Home = ({modal, toggleModal, toggleMobileNav, mobileNavClass, cards}) => {
     toggleMobileNav={toggleMobileNav} 
     mobileNavClass={mobileNavClass}
     />   <div className="card-list">
+      
      <CardGrid 
      cards={cards}
      toggleModal = {toggleModal}
